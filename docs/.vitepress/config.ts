@@ -59,6 +59,8 @@ export default withMermaid(
           text: "Guides",
           items: [
             { text: "Create a skill", link: "/create-a-skill" },
+            { text: "Convert a SKILL.md", link: "/convert-a-skill-md" },
+            { text: "Evaluate & score", link: "/evaluate-and-score" },
             { text: "Ingest a skill", link: "/ingest-a-skill" },
             { text: "Agents", link: "/agents" },
           ],

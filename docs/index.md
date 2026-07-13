@@ -78,7 +78,7 @@ Summarize trust warnings. Do not execute for real unless I ask.
 
 </div>
 
-More starters: [Getting started](/getting-started) · [Agents](/agents) · [Workflows](/workflows)
+More starters: [Getting started](/getting-started) · [Convert a SKILL.md](/convert-a-skill-md) · [Evaluate & score](/evaluate-and-score) · [Agents](/agents) · [Workflows](/workflows)
 
 ## What's in a `.skill`
 
