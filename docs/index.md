@@ -7,7 +7,7 @@ hero:
   tagline: Install once. Talk to your AI. Portable skills with inspect-before-run trust.
   image:
     src: /assets/skillerr-mark-512.png
-    alt: Skillerr mark — Shimmer skill-core
+    alt: Skillerr .skill mark
   actions:
     - theme: brand
       text: Getting started
