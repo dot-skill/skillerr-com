@@ -48,6 +48,7 @@ jobs:
       - name: Build fixtures and site
         env:
           DOT_SKILL_ROOT: ${{ github.workspace }}/skillerr
+          FIXTURES_SIGNING_KEY: ${{ secrets.FIXTURES_SIGNING_KEY }}
         run: npm run build
 
       - name: Upload Pages artifact
