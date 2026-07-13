@@ -6,7 +6,7 @@ Skillerr is **agent-first**. Install the reference CLI once, then paste a prompt
 npm i -g skillerr
 ```
 
-Node ≥ 20. Site: [skillerr.com](https://skillerr.com).
+Node ≥ 20. Site: [skillerr.com](https://dot-skill.github.io/skillerr-com/).
 
 Implementers wiring a product: start from [Protocol](/protocol) and the Skillerr libraries — the CLI is the reference surface, not the only path.
 

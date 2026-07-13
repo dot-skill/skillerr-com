@@ -4,10 +4,7 @@ layout: home
 hero:
   name: Skillerr
   text: Open .skill Protocol
-  tagline: Install once. Talk to your AI. Portable skills with inspect-before-run trust.
-  image:
-    src: /assets/skillerr-mark-512.png
-    alt: Skillerr .skill mark
+  tagline: Chat context vanishes. Markdown skills drift. Sealed .skill packages carry typed I/O, workflow, and inspect-before-run trust — install once, then talk to your AI.
   actions:
     - theme: brand
       text: Getting started

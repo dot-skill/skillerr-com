@@ -2,7 +2,7 @@
 
 ## What is Skillerr?
 
-Skillerr defines an open protocol and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Site: [skillerr.com](https://skillerr.com).
+Skillerr defines an open protocol and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Site: [skillerr.com](https://dot-skill.github.io/skillerr-com/).
 
 ## What is the Open `.skill` Protocol?
 

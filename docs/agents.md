@@ -14,7 +14,7 @@ npm i -g skillerr
 npx -y skillerr --help
 ```
 
-Bin: `skill`. Product hosts may wrap the Skillerr compile / runtime libraries instead of shelling out. Docs: [skillerr.com](https://skillerr.com).
+Bin: `skill`. Product hosts may wrap the Skillerr compile / runtime libraries instead of shelling out. Docs: [skillerr.com](https://dot-skill.github.io/skillerr-com/).
 
 ## Mandatory rules
 

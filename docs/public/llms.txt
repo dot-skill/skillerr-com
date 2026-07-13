@@ -1,6 +1,6 @@
 # Skillerr — agent index (llms.txt)
 
-> Open .skill Protocol · Draft 0.5.0 · https://skillerr.com
+> Open .skill Protocol · Draft 0.5.0 · https://dot-skill.github.io/skillerr-com/
 
 Skillerr is an open protocol and portable `.skill` format for AI agents. Install the reference CLI once; humans prompt agents to create, inspect, hand off, and run skills.
 
@@ -14,22 +14,22 @@ Bin: `skill`. Node ≥ 20.
 
 ## Start here (prompts)
 
-- Overview: https://skillerr.com/
-- Getting started (copy-paste prompts): https://skillerr.com/getting-started
-- Agent rules: https://skillerr.com/agents
-- Workflows (visual): https://skillerr.com/workflows
+- Overview: https://dot-skill.github.io/skillerr-com/
+- Getting started (copy-paste prompts): https://dot-skill.github.io/skillerr-com/getting-started
+- Agent rules: https://dot-skill.github.io/skillerr-com/agents
+- Workflows (visual): https://dot-skill.github.io/skillerr-com/workflows
 
 ## Guides
 
-- Create a skill: https://skillerr.com/create-a-skill
-- Ingest a skill: https://skillerr.com/ingest-a-skill
+- Create a skill: https://dot-skill.github.io/skillerr-com/create-a-skill
+- Ingest a skill: https://dot-skill.github.io/skillerr-com/ingest-a-skill
 
 ## Reference
 
-- Protocol spec: https://skillerr.com/protocol
-- CLI reference: https://skillerr.com/cli
-- Trust and security: https://skillerr.com/trust-and-security
-- Fixtures (download .skill): https://skillerr.com/fixtures
+- Protocol spec: https://dot-skill.github.io/skillerr-com/protocol
+- CLI reference: https://dot-skill.github.io/skillerr-com/cli
+- Trust and security: https://dot-skill.github.io/skillerr-com/trust-and-security
+- Fixtures (download .skill): https://dot-skill.github.io/skillerr-com/fixtures
 
 ## Repository
 
@@ -62,4 +62,4 @@ Summarize trust warnings. Do not execute for real unless I ask.
 
 ## Fixtures
 
-Download tested `.skill` packages from https://skillerr.com/fixtures/ (knowledge-only, parameterized-integration, code-changing, contract-foundation).
+Download tested `.skill` packages from https://dot-skill.github.io/skillerr-com/fixtures/ (knowledge-only, parameterized-integration, code-changing, contract-foundation).

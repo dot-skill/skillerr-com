@@ -1,6 +1,6 @@
 # Open `.skill` Protocol
 
-**Brand:** Skillerr · **Site:** [skillerr.com](https://skillerr.com)  
+**Brand:** Skillerr · **Site:** [skillerr.com](https://dot-skill.github.io/skillerr-com/)  
 **Status:** Draft 0.5.0  
 **Extension:** `.skill`  
 **Container:** sealed ZIP
