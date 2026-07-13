@@ -1,11 +1,11 @@
 {
-  "built_at": "2026-07-13T02:12:34.371Z",
+  "built_at": "2026-07-13T23:02:41.764Z",
   "fixtures": [
     {
       "name": "knowledge-only",
       "file": "/fixtures/knowledge-only.skill",
-      "skill_id": "skl_bd75e3ea49d0",
-      "package_digest": "sha256:7a0997f102f5be4aa5cce63bf617341ae51b6d14e3a7ecaeb94da1fc599c18ed",
+      "skill_id": "skl_5d4cc820b37f",
+      "package_digest": "sha256:d9cedbe53d6915a995219051f9710d8df4d2f43d47cb5945817394d7e166a20d",
       "completeness": {
         "kind": "completeness_report",
         "profile": "continuity",
@@ -26,13 +26,15 @@
         "hints": [
           "Add a 0.5 SkillContract. Legacy text was retained for continuity but structured semantics are unknown."
         ]
-      }
+      },
+      "mint_status": "draft",
+      "trust_state": "untrusted"
     },
     {
       "name": "parameterized-integration",
       "file": "/fixtures/parameterized-integration.skill",
-      "skill_id": "skl_310e7ff4dab8",
-      "package_digest": "sha256:408c79e3ed935447fabbfa24973cac229c7bd443c50e7bb32a0dfad22e0cbf8b",
+      "skill_id": "skl_8298e88dce61",
+      "package_digest": "sha256:16319a1ca4c8d180e1fa5639381f7c86460044637c73d6a302b66ba62a5620c3",
       "completeness": {
         "kind": "completeness_report",
         "profile": "continuity",
@@ -54,13 +56,15 @@
         "hints": [
           "Add a 0.5 SkillContract. Legacy text was retained for continuity but structured semantics are unknown."
         ]
-      }
+      },
+      "mint_status": "draft",
+      "trust_state": "untrusted"
     },
     {
       "name": "code-changing",
       "file": "/fixtures/code-changing.skill",
-      "skill_id": "skl_66c102d130ba",
-      "package_digest": "sha256:f6875dec891c91b50adb6c17b481a68e7ef11ec91d666a513c1a06be0d9d5ec1",
+      "skill_id": "skl_3f05c6b25bd1",
+      "package_digest": "sha256:a909fd76afe91dad6c8a1bc2468f6942536a152ebedd9a256f1e20f66b3e8af8",
       "completeness": {
         "kind": "completeness_report",
         "profile": "continuity",
@@ -82,13 +86,15 @@
         "hints": [
           "Add a 0.5 SkillContract. Legacy text was retained for continuity but structured semantics are unknown."
         ]
-      }
+      },
+      "mint_status": "draft",
+      "trust_state": "untrusted"
     },
     {
       "name": "contract-foundation",
       "file": "/fixtures/contract-foundation.skill",
-      "skill_id": "skl_7bdce16c40aa",
-      "package_digest": "sha256:076e0e8518f2fd4cbe7950874660a39a817607e9100b02e4256dfa65bb67c2e0",
+      "skill_id": "skl_021e824dfc46",
+      "package_digest": "sha256:dcccbe22e693aa91d0e0a7f24143dbcbaf60119d7f456e209c5619db53099b0c",
       "completeness": {
         "kind": "completeness_report",
         "profile": "release",
@@ -113,7 +119,10 @@
         ],
         "missing": [],
         "hints": []
-      }
+      },
+      "mint_status": "minted",
+      "trust_state": "verified_issuer",
+      "issuer_class": "configured_ed25519"
     }
   ]
 }
