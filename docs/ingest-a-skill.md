@@ -17,7 +17,8 @@ Load ./handoff.skill as continuity context. Summarize intent, scrubbed journey,
 open gaps, and pinned knowledge. Resume the work; do not mint a fake release.
 ```
 
-Install once if needed: `npm i -g skillerr`.
+Needs the CLI installed first — run `skill --version`, and if that fails,
+`npm i -g skillerr`.
 
 ## What your agent will do
 
