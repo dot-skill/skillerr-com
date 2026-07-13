@@ -59,7 +59,7 @@ Checkpoint the current .skill workspace as a continuity draft (partial OK).
 Tell me the output path and what the next agent should load.
 ```
 
-Full create path: [Create a skill](/create-a-skill) · Ingest path: [Ingest a skill](/ingest-a-skill) · Agent rules: [Agents](/agents)
+Full create path: [Create a skill](/create-a-skill) · Have a SKILL.md already: [Convert a SKILL.md](/convert-a-skill-md) · Measure quality: [Evaluate & score](/evaluate-and-score) · Ingest path: [Ingest a skill](/ingest-a-skill) · Agent rules: [Agents](/agents)
 
 ---
 
