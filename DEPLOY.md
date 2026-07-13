@@ -2,27 +2,38 @@
 
 Free static hosting from **dot-skill/skillerr-com** — website-only repo, separate from the OSS protocol repo.
 
+## Live now
+
+**https://dot-skill.github.io/skillerr-com/**
+
+Custom domain `skillerr.com` is **temporarily disabled** until GoDaddy DNS points at GitHub Pages (not the registrar park IP). The site serves on the project Pages URL above without redirecting to a broken apex.
+
+When DNS is ready:
+
+1. Point apex A records and optional `www` CNAME (see below).
+2. Restore `docs/public/CNAME` with `skillerr.com`.
+3. Re-add custom domain in **dot-skill/skillerr-com** → Settings → Pages.
+4. Optionally set VitePress `base` back to `/` if you want root-relative URLs on the custom domain.
+
 ## What ships
 
 - VitePress site (agent-first pages, brand mark, Mermaid workflows)
 - Tested `.skill` fixtures in `docs/public/fixtures/` (built from [dot-skill/skillerr](https://github.com/dot-skill/skillerr) `examples/` at deploy)
 - `llms.txt` at site root for agents
-- CNAME: `skillerr.com`
 
 ## One-time GitHub setup
 
 1. **dot-skill/skillerr-com** → Settings → Pages  
    - Source: **GitHub Actions**
-2. Settings → Pages → Custom domain: `skillerr.com`  
-   - Enforce HTTPS after DNS propagates and the cert is ready
+2. Custom domain: **off for now** (see “Live now” above)
 
 Workflow: `.github/workflows/pages.yml` (runs on push to `main`). CI checks out `dot-skill/skillerr` to build fixtures, then builds this site.
 
-Project Pages URL (before custom domain): `https://dot-skill.github.io/skillerr-com/`
+VitePress `base` is `/skillerr-com/` for project Pages (required — assets 404 if set to `/`).
 
-## DNS (registrar)
+## DNS (registrar) — add later
 
-Apex `skillerr.com` (GitHub Pages A records — unchanged):
+Apex `skillerr.com` (GitHub Pages A records):
 
 | Type | Host | Value |
 |------|------|-------|
@@ -39,7 +50,7 @@ Optional `www`:
 
 **Note:** Custom domain must be configured on **skillerr-com** (not `dot-skill/skillerr`). After migration, remove any custom domain from the OSS repo Pages settings if it was set there.
 
-Verify: `dig skillerr.com +short` should return the four A records.
+Verify: `dig skillerr.com +short` should return the four A records (not a GoDaddy park IP).
 
 ## Local build
 
@@ -50,7 +61,7 @@ cd ../skillerr && npm run build && cd -
 npm install
 DOT_SKILL_ROOT=../skillerr npm run build
 npm run fixtures:test
-npm run preview        # http://localhost:4173
+npm run preview        # http://localhost:4173/skillerr-com/
 ```
 
 ## Pages (13 routes)

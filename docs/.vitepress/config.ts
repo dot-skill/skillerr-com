@@ -7,6 +7,7 @@ export default withMermaid(
     description:
       "Open protocol and portable .skill format for AI agents — create, inspect, hand off, and run skills across hosts.",
     lang: "en-US",
+    base: "/skillerr-com/",
     cleanUrls: true,
     lastUpdated: true,
     ignoreDeadLinks: [/^\/fixtures\/.*\.skill$/],
