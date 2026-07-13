@@ -2,8 +2,8 @@
 layout: home
 
 hero:
-  name: Skillerr
-  text: Open .skill Protocol
+  name: Open .skill Protocol
+  text: Sealed, inspectable packages for AI agent skills
   tagline: Chat context vanishes. Markdown skills drift. Sealed .skill packages carry typed I/O, workflow, and inspect-before-run trust — install once, then talk to your AI.
   actions:
     - theme: brand
