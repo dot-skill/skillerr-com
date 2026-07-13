@@ -2,6 +2,12 @@
 
 Under the Open `.skill` Protocol, **agents author** portable skills; **humans review and approve** release. Point your AI at the work — do not treat the CLI as a human click-ops checklist.
 
+Want the full interview-driven walkthrough instead of a single prompt —
+every field explained, in order, with the reasoning behind it? Point your
+agent at [`examples/skillerr-authoring/SKILL.md`](https://github.com/dot-skill/skillerr/blob/main/examples/skillerr-authoring/SKILL.md)
+in the `skillerr` repo. It takes an agent from a plain conversation to a
+minted `.skill` without hand-writing the contract JSON.
+
 ## Prompt your agent
 
 ```text
