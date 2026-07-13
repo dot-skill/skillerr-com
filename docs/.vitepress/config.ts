@@ -12,7 +12,13 @@ export default withMermaid(
     lastUpdated: true,
     ignoreDeadLinks: [/^\/fixtures\/.*\.skill$/],
     head: [
+      // Favicon set + OG image are generated from the single master SVG in
+      // the sibling `skillerr` repo (assets/skillerr-mark.svg) via
+      // `scripts/build-brand.mjs` there, then copied into docs/public/assets/
+      // — see docs/public/assets/README.md for the re-copy procedure.
+      ["link", { rel: "icon", href: "/assets/favicon.ico", type: "image/x-icon" }],
       ["link", { rel: "icon", href: "/assets/skillerr-mark-32.png", type: "image/png" }],
+      ["link", { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png" }],
       [
         "meta",
         {
@@ -23,6 +29,9 @@ export default withMermaid(
       ],
       ["meta", { property: "og:site_name", content: "Skillerr" }],
       ["meta", { property: "og:type", content: "website" }],
+      ["meta", { property: "og:image", content: "https://dot-skill.github.io/skillerr-com/assets/og-banner.png" }],
+      ["meta", { name: "twitter:card", content: "summary_large_image" }],
+      ["meta", { name: "twitter:image", content: "https://dot-skill.github.io/skillerr-com/assets/og-banner.png" }],
     ],
     themeConfig: {
       logo: { src: "/assets/skillerr-mark-32.png", width: 28, height: 28 },
