@@ -3,9 +3,9 @@ import { withMermaid } from "vitepress-plugin-mermaid";
 
 export default withMermaid(
   defineConfig({
-    title: "Skillerr",
+    title: "Open .skill Protocol",
     description:
-      "Open protocol and portable .skill format for AI agents — create, inspect, hand off, and run skills across hosts.",
+      "A sealed, inspectable package format for AI agent skills — typed contract, integrity digests, trust states, and continuity handoff. Reference implementation: skillerr.",
     lang: "en-US",
     base: "/skillerr-com/",
     cleanUrls: true,
@@ -24,10 +24,10 @@ export default withMermaid(
         {
           name: "description",
           content:
-            "Skillerr — open .skill protocol. Install skillerr once, then talk to your AI.",
+            "Open .skill Protocol — a sealed, inspectable package format for AI agent skills. Install the reference CLI (skillerr) once, then talk to your AI.",
         },
       ],
-      ["meta", { property: "og:site_name", content: "Skillerr" }],
+      ["meta", { property: "og:site_name", content: "Open .skill Protocol" }],
       ["meta", { property: "og:type", content: "website" }],
       ["meta", { property: "og:image", content: "https://dot-skill.github.io/skillerr-com/assets/og-banner.png" }],
       ["meta", { name: "twitter:card", content: "summary_large_image" }],
@@ -35,7 +35,7 @@ export default withMermaid(
     ],
     themeConfig: {
       logo: { src: "/assets/skillerr-mark-32.png", width: 28, height: 28 },
-      siteTitle: "Skillerr",
+      siteTitle: ".skill",
       nav: [
         { text: "Docs", link: "/getting-started" },
         { text: "Protocol", link: "/protocol" },
@@ -85,7 +85,7 @@ export default withMermaid(
       ],
       footer: {
         message: "Open .skill Protocol — Draft 0.5.0",
-        copyright: "MIT © Skillerr contributors",
+        copyright: "MIT © Open .skill Protocol contributors",
       },
       search: { provider: "local" },
     },
