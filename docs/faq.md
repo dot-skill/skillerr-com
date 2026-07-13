@@ -74,3 +74,9 @@ Yes. Ask your agent to set `SKILL_HOST` / provider / model / deployment for Olla
 ## Can a seal prove which local model wrote the skill?
 
 No. A seal proves which key signed which claims. Local LLMs can still misreport authorship. See [Trust and security](/trust-and-security).
+
+## Claude Desktop claims `.skill` on macOS — is that Skillerr?
+
+**No.** On macOS, Claude Desktop may register the `.skill` extension for its own **Agent Skills** format (a zip with `SKILL.md` inside). Skillerr `.skill` files are a **different** sealed package (typed contract, digests, mint, assets) — same extension, different format.
+
+**What to do:** Use the CLI (`skill inspect ./file.skill`) or your AI agent to identify the file. In Finder, use **Open With** → your editor or terminal instead of double-clicking if the wrong app opens. Do not assume every `.skill` file is Claude-native or Skillerr-native without inspecting.
