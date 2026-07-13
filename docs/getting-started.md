@@ -17,9 +17,14 @@ Implementers wiring a product: start from [Protocol](/protocol) and the Skillerr
 ### Create a skill from this chat
 
 ```text
-Install skillerr if needed (`npm i -g skillerr`). Set SKILL_HOST to your host id
-(e.g. cursor). From this conversation, create a portable .skill: redacted journey,
-exact sections I approved (secrets only as {{refs}}), then either checkpoint for
+Run these exact commands in your terminal, in order:
+
+1. npm i -g skillerr          (skip if `skill --version` already works)
+2. export SKILL_HOST=cursor   (replace "cursor" with your actual tool name —
+                                claude-code, codex, ollama, etc.)
+
+Then, from this conversation, create a portable .skill: redacted journey, exact
+sections I approved (secrets only as {{refs}}), then either checkpoint for
 handoff or compile --approve --mint when release-complete. Do not invent filler.
 Show me status and the output path.
 ```

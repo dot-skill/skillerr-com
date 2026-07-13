@@ -11,16 +11,15 @@ minted `.skill` without hand-writing the contract JSON.
 ## Prompt your agent
 
 ```text
-Install skillerr if needed. Set SKILL_HOST to your host id. From this conversation,
-create a portable .skill with a redacted journey and exact sections I approved
-(secrets as {{refs}}). Checkpoint for handoff, or compile --approve --mint when
-release-complete. Do not invent filler. Show status and the output path.
-```
+Run these exact commands in your terminal, in order:
 
-Install once if the agent needs it:
+1. npm i -g skillerr          (skip if `skill --version` already works)
+2. export SKILL_HOST=cursor   (replace "cursor" with your actual tool name)
 
-```bash
-npm i -g skillerr
+Then, from this conversation, create a portable .skill with a redacted journey
+and exact sections I approved (secrets as {{refs}}). Checkpoint for handoff, or
+compile --approve --mint when release-complete. Do not invent filler. Show
+status and the output path.
 ```
 
 ## What your agent will do
