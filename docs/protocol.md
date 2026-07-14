@@ -1,11 +1,11 @@
 # Open `.skill` Protocol
 
-**Brand:** Skillerr · **Site:** [skillerr.com](https://dot-skill.github.io/skillerr-com/)  
+**Reference CLI:** [`skillerr`](https://www.npmjs.com/package/skillerr) · **Site:** [skillerr.com](https://dot-skill.github.io/skillerr-com/)  
 **Status:** Draft 0.5.0  
 **Extension:** `.skill`  
 **Container:** sealed ZIP
 
-Skillerr defines an open protocol and portable `.skill` format so AI apps and agents can author, inspect, version, and run skills interoperably. The `skillerr` CLI is the reference implementation — not the definition of the protocol.
+This is an open specification and portable `.skill` format so AI apps and agents can author, inspect, version, and run skills interoperably. The `skillerr` CLI is the reference implementation — not the definition of the protocol.
 
 A conforming **host** is any runtime that loads a `.skill` artifact according to this specification. Independent conforming implementations are welcome.
 
@@ -111,7 +111,7 @@ Creation paths require a declared agent host (`SKILL_HOST`, IDE extension, or ap
 
 ## Contract tooling
 
-Published SkillContract schema ships with the Skillerr reference implementation.
+Published SkillContract schema ships with the `skillerr` reference implementation.
 
 Reference CLI helpers:
 

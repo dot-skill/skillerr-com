@@ -33,7 +33,7 @@ features:
 
 ## Sealed `.skill` packages
 
-Skillerr is an open protocol and portable **`.skill`** format so AI agents can author, inspect, hand off, and run skills across hosts.
+The Open `.skill` Protocol is an open specification and portable **`.skill`** format so AI agents can author, inspect, hand off, and run skills across hosts. `skillerr` is the reference implementation CLI.
 
 **Format:** `.skill` (sealed ZIP) · **Status:** Draft 0.5.0  
 **Reference CLI:** [`skillerr`](https://www.npmjs.com/package/skillerr) (bin: `skill`)  

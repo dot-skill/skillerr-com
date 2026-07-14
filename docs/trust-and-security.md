@@ -74,4 +74,4 @@ Malicious packages, prompt injection via resources, tool escalation, dependency 
 
 ## Reporting
 
-For the Skillerr reference implementation, use private vulnerability reporting via [skillerr.com](https://dot-skill.github.io/skillerr-com/). Do not open public issues with exploit details.
+For the `skillerr` reference implementation, use private vulnerability reporting via [skillerr.com](https://dot-skill.github.io/skillerr-com/). Do not open public issues with exploit details.
