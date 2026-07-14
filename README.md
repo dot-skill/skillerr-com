@@ -31,3 +31,11 @@ npm run fixtures:test
 GitHub Pages from **this repo** — see [DEPLOY.md](./DEPLOY.md) for DNS and custom domain (`skillerr.com`).
 
 Workflow: [`.github/workflows/pages.yml`](./.github/workflows/pages.yml)
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
+
+## License
+
+[MIT](./LICENSE)
