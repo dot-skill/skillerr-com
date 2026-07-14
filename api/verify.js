@@ -72,7 +72,7 @@ export default async function handler(req, res) {
     });
     return;
   }
-  const { validatePackageBytes, inspectTrustView, verifyRekorAnchor } = core;
+  const { validatePackageBytes, inspectTrustView, verifyRekorAnchor, rekorSearchUrl } = core;
 
   try {
     const bytesArray = new Uint8Array(bytes);
@@ -94,9 +94,17 @@ export default async function handler(req, res) {
     const tlogAnchor = anchors.find((a) => a.kind === "transparency_log");
     if (tlogAnchor && trustView.sealed_manifest_digest) {
       const pinnedKey = PUBLISHED_TRUST_STORE.keys?.find((k) => k.key_id === tlogAnchor.issuer);
-      transparency = pinnedKey
-        ? await verifyRekorAnchor(tlogAnchor, trustView.sealed_manifest_digest, pinnedKey.public_key_pem)
-        : { ok: false, error: `No published trust-store entry for issuer "${tlogAnchor.issuer}"` };
+      if (!pinnedKey) {
+        transparency = { ok: false, error: `No published trust-store entry for issuer "${tlogAnchor.issuer}"` };
+      } else {
+        const verified = await verifyRekorAnchor(tlogAnchor, trustView.sealed_manifest_digest, pinnedKey.public_key_pem);
+        // Independently checkable on sigstore's own UI, not just our word
+        // for it — undefined (no fabricated link) unless the anchor both
+        // verified and lives on the public rekor.sigstore.dev instance.
+        transparency = verified.ok
+          ? { ...verified, rekor_url: rekorSearchUrl(tlogAnchor, verified.log_index) }
+          : verified;
+      }
     }
 
     res.status(200).json({
@@ -109,6 +117,10 @@ export default async function handler(req, res) {
       trust_label: trustView.label,
       mint_status: validation.manifest.mint?.mint_status ?? "draft",
       issuer_class: trustView.issuer_class,
+      // Present (true/false) regardless of whether the anchor verified, so
+      // the UI can distinguish "not publicly anchored" from "anchored but
+      // couldn't be verified" instead of treating both as silent absence.
+      anchored: Boolean(tlogAnchor),
       ...(transparency ? { transparency } : {}),
       docs: "https://www.skillerr.com/docs/what-is-verifiable",
     });

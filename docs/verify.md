@@ -12,6 +12,12 @@ Upload a `.skill` file to check its trust state — the same result `skill inspe
 
 It does **not** check whether the skill's content is well-designed, safe to run, or a good fit for your use case — see [What is verifiable](https://github.com/dot-skill/skillerr/blob/main/docs/WHAT-IS-VERIFIABLE.md) for the full breakdown of what a trust state does and doesn't prove.
 
+## Don't just trust our answer
+
+If the uploaded package has a transparency-log anchor and it verifies, the result includes a direct link to that entry on `search.sigstore.dev` — sigstore's own public log, not anything this site runs or could quietly alter. Click through and check it yourself instead of taking our word for it. A package with no anchor says so plainly ("not publicly anchored") rather than just omitting the section, so absence reads as absence, not as something broken.
+
+The CLI surfaces the same link: `skill mint --transparency` prints it when the anchor is created, and `skill verify-trust` prints it every time it re-verifies one.
+
 ## Privacy {#privacy}
 
 This tool sends the uploaded file to our server for verification — it does not verify fully client-side in your browser. That's a deliberate tradeoff, not an oversight: correct signature and Merkle-inclusion-proof verification is security-critical code, and reusing the same tested `@skillerr/core` library the CLI runs on is more reliable than re-implementing it fresh in browser JavaScript under time pressure.

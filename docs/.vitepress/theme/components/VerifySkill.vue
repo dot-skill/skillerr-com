@@ -11,7 +11,8 @@ type ApiResult = {
   trust_label?: string;
   mint_status?: string;
   issuer_class?: string;
-  transparency?: { ok: boolean; log_index?: string; integrated_time?: string; error?: string };
+  anchored?: boolean;
+  transparency?: { ok: boolean; log_index?: string; integrated_time?: string; rekor_url?: string; error?: string };
   issues?: Array<{ severity: string; code: string; message: string }>;
   error?: string;
   docs?: string;
@@ -123,12 +124,19 @@ function trustClass(state?: string) {
         </table>
         <div v-if="result.transparency">
           <p v-if="result.transparency.ok" class="transparency-ok">
-            ✓ Transparency-log anchor verified — logged at index {{ result.transparency.log_index }}
+            ✓ Transparency-log anchor verified — logged at index {{ result.transparency.log_index }}.
+            <a v-if="result.transparency.rekor_url" :href="result.transparency.rekor_url" target="_blank" rel="noopener">
+              Check this entry yourself on sigstore's public log →
+            </a>
           </p>
           <p v-else class="transparency-fail">
             ✗ Transparency-log anchor present but failed verification: {{ result.transparency.error }}
           </p>
         </div>
+        <p v-else-if="result.anchored === false" class="transparency-none">
+          Not publicly anchored to a transparency log — trust here rests on the signature and trust-store check
+          above, not on independent third-party verification.
+        </p>
         <p class="docs-link"><a :href="result.docs">What does this trust state actually prove?</a></p>
       </template>
 
@@ -219,6 +227,7 @@ td:first-child {
 }
 .transparency-ok { color: #0a5c1f; }
 .transparency-fail { color: #8a1f1f; }
+.transparency-none { color: var(--vp-c-text-2); font-size: 0.9em; }
 .docs-link {
   margin-top: 12px;
 }
