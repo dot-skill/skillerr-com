@@ -9,9 +9,12 @@
     "fixtures:build": "node scripts/build-fixtures.mjs",
     "fixtures:test": "node scripts/test-fixtures.mjs"
   },
+  "dependencies": {
+    "@skillerr/core": "^0.9.4"
+  },
   "devDependencies": {
     "mermaid": "^11.4.0",
-    "skillerr": "^0.9.1",
+    "skillerr": "^0.9.4",
     "vitepress": "^1.6.3",
     "vitepress-plugin-mermaid": "^2.0.17"
   },

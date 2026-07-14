@@ -48,6 +48,7 @@ export default withMermaid(
       nav: [
         { text: "Docs", link: "/getting-started" },
         { text: "Protocol", link: "/protocol" },
+        { text: "Verify", link: "/verify" },
         { text: "Fixtures", link: "/fixtures" },
         { text: "Workflows", link: "/workflows" },
         {
@@ -79,6 +80,7 @@ export default withMermaid(
           items: [
             { text: "Protocol", link: "/protocol" },
             { text: "CLI", link: "/cli" },
+            { text: "Verify a skill", link: "/verify" },
             { text: "Trust and security", link: "/trust-and-security" },
             { text: "Fixtures", link: "/fixtures" },
           ],
