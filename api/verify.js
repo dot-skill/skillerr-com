@@ -12,11 +12,6 @@
  * ever sealed, so this is a materially different exposure than uploading
  * raw source.
  */
-import {
-  validatePackageBytes,
-  inspectTrustView,
-  verifyRekorAnchor,
-} from "@skillerr/core";
 import { createRequire } from "node:module";
 
 // Same trust store published at /docs/trust/trust-store.json. Loaded via a
@@ -35,8 +30,6 @@ try {
 }
 
 const MAX_BODY_BYTES = 12 * 1024 * 1024; // generous; protocol's own MAX_UNCOMPRESSED_BYTES gates the real limit
-
-export const config = { api: { bodyParser: { sizeLimit: "16mb" } } };
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -68,6 +61,18 @@ export default async function handler(req, res) {
     res.status(400).json({ ok: false, error: `File must be 1 byte to ${MAX_BODY_BYTES} bytes` });
     return;
   }
+
+  let core;
+  try {
+    core = await import("@skillerr/core");
+  } catch (e) {
+    res.status(200).json({
+      ok: false,
+      error: `Failed to load @skillerr/core: ${e instanceof Error ? e.message : String(e)}`,
+    });
+    return;
+  }
+  const { validatePackageBytes, inspectTrustView, verifyRekorAnchor } = core;
 
   try {
     const bytesArray = new Uint8Array(bytes);
