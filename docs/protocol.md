@@ -1,7 +1,7 @@
 # Open `.skill` Protocol
 
-**Reference CLI:** [`skillerr`](https://www.npmjs.com/package/skillerr) · **Site:** [skillerr.com](https://dot-skill.github.io/skillerr-com/)  
-**Status:** Draft 0.5.0  
+**Reference CLI:** [`skillerr`](https://www.npmjs.com/package/skillerr) · **Site:** [skillerr.com](https://www.skillerr.com/docs/)  
+**Status:** Draft 0.5.0 — evolving in the open via [RFCs](https://github.com/dot-skill/skillerr/tree/main/docs/rfcs), not frozen  
 **Extension:** `.skill`  
 **Container:** sealed ZIP
 

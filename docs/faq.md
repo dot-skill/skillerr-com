@@ -2,7 +2,7 @@
 
 ## What is "Skillerr"?
 
-"Skillerr" names the reference CLI package (`npm i -g skillerr`), not the project. The project is the **Open `.skill` Protocol** — an open specification and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Full breakdown of every name involved (protocol, format, npm scope, CLI, wire identifiers): [Naming](https://github.com/dot-skill/skillerr/blob/main/docs/NAMING.md). Site: [skillerr.com](https://dot-skill.github.io/skillerr-com/).
+"Skillerr" names the reference CLI package (`npm i -g skillerr`), not the project. The project is the **Open `.skill` Protocol** — an open specification and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Full breakdown of every name involved (protocol, format, npm scope, CLI, wire identifiers): [Naming](https://github.com/dot-skill/skillerr/blob/main/docs/NAMING.md). Site: [skillerr.com](https://www.skillerr.com/docs/).
 
 ## What is the Open `.skill` Protocol?
 
@@ -59,9 +59,11 @@ Share the `.skill` file directly. Optional local transparency log: `skill regist
 
 No. Optional ledger anchors may appear later as one permanence kind — never required.
 
-## Is this production-final?
+## Is this ready to use?
 
-Public **draft** (0.5.0). Digests and inspect-before-run are real. The bundled reference mint HMAC is **development-only** — replace with real keys for production issuers. Do not treat the public-dev signer as production identity proof.
+Yes, for real use today — digests, validation, inspect-before-run, and the runtime capability gate are all real, tested code. The protocol spec is versioned Draft 0.5.0 and evolves in the open via RFCs as more hosts adopt it — a normal spec-maturity stage, not a claim that the tooling is unreliable.
+
+For production trust, configure a real Ed25519 issuer key (`skill keygen` + `--signer-key`) so mints earn `verified_issuer` trust — the bundled zero-setup key is for trying the CLI, not for shipping. See [What is verifiable](https://github.com/dot-skill/skillerr/blob/main/docs/WHAT-IS-VERIFIABLE.md) for exactly what a signature proves either way.
 
 ## Do local / offline agents work?
 

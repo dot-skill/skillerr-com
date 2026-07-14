@@ -7,13 +7,16 @@ export default withMermaid(
     description:
       "A sealed, inspectable package format for AI agent skills — typed contract, integrity digests, trust states, and continuity handoff. Reference implementation: skillerr.",
     lang: "en-US",
-    // GitHub Pages serves this site from a subpath (github.io/skillerr-com/),
-    // so every asset URL needs that prefix — but Vercel (and local dev)
-    // serve from the domain root, where that same prefix 404s on every
-    // CSS/JS/image request, producing an unstyled, broken-looking page.
-    // GITHUB_ACTIONS is set automatically in that one build environment;
-    // everywhere else (Vercel, local `vitepress dev`/`build`) defaults to root.
-    base: process.env.GITHUB_ACTIONS ? "/skillerr-com/" : "/",
+    // Three hosting contexts, three base paths:
+    // - GitHub Pages serves from a subpath (github.io/skillerr-com/) —
+    //   GITHUB_ACTIONS is set automatically in that one build environment.
+    // - www.skillerr.com (Vercel, production) serves the docs under /docs/,
+    //   deliberately — the bare root is reserved for a future product built
+    //   on top of this protocol, not the docs site. See vercel.json for the
+    //   root -> /docs/ redirect that makes the bare domain still useful today.
+    // - Local dev (`vitepress dev`/`build` with neither env var) defaults to
+    //   root, which is simplest for previewing without the /docs/ prefix.
+    base: process.env.GITHUB_ACTIONS ? "/skillerr-com/" : process.env.VERCEL ? "/docs/" : "/",
     cleanUrls: true,
     lastUpdated: true,
     ignoreDeadLinks: [/^\/fixtures\/.*\.skill$/],
@@ -35,9 +38,9 @@ export default withMermaid(
       ],
       ["meta", { property: "og:site_name", content: "Open .skill Protocol" }],
       ["meta", { property: "og:type", content: "website" }],
-      ["meta", { property: "og:image", content: "https://dot-skill.github.io/skillerr-com/assets/og-banner.png" }],
+      ["meta", { property: "og:image", content: "https://www.skillerr.com/docs/assets/og-banner.png" }],
       ["meta", { name: "twitter:card", content: "summary_large_image" }],
-      ["meta", { name: "twitter:image", content: "https://dot-skill.github.io/skillerr-com/assets/og-banner.png" }],
+      ["meta", { name: "twitter:image", content: "https://www.skillerr.com/docs/assets/og-banner.png" }],
     ],
     themeConfig: {
       logo: { src: "/assets/skillerr-mark-32.png", width: 28, height: 28 },

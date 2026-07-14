@@ -8,7 +8,7 @@ skill --help
 skill --version
 ```
 
-Bin: `skill`. Site: [skillerr.com](https://dot-skill.github.io/skillerr-com/).
+Bin: `skill`. Site: [skillerr.com](https://www.skillerr.com/docs/).
 
 ## Environment
 

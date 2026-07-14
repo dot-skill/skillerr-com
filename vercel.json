@@ -1,4 +1,11 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "docs/.vitepress/dist"
+  "buildCommand": "npm run build && rm -rf vercel-dist && mkdir -p vercel-dist/docs && cp -r docs/.vitepress/dist/. vercel-dist/docs/",
+  "outputDirectory": "vercel-dist",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/docs/",
+      "permanent": false
+    }
+  ]
 }

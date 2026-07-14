@@ -1,8 +1,8 @@
 # Roadmap
 
-Status: protocol **Draft 0.5.0**; the `@skillerr/*` reference packages track the same draft line. The goal is an open, interoperable contract — multiple conforming hosts and runtimes, not a single CLI.
+Status: protocol **Draft 0.5.0**, evolving in the open via RFCs; the `@skillerr/*` reference packages implement it as it stands today. The goal is an open, interoperable contract — multiple conforming hosts and runtimes, not a single CLI.
 
-Public, contribution-oriented items only. Timing is not guaranteed. Site: [skillerr.com](https://dot-skill.github.io/skillerr-com/).
+Public, contribution-oriented items only. Timing is not guaranteed. Site: [skillerr.com](https://www.skillerr.com/docs/).
 
 ## Available in the reference today
 

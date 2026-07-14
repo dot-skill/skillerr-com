@@ -1,6 +1,6 @@
 # skillerr.com
 
-Public agent-first documentation site for the **Open `.skill` Protocol** — [skillerr.com](https://dot-skill.github.io/skillerr-com/).
+Public agent-first documentation site for the **Open `.skill` Protocol** — [skillerr.com](https://www.skillerr.com/docs/).
 
 This repo is **website only** (VitePress, fixtures gallery, `llms.txt`). The open protocol, reference CLI, and implementer docs live in the OSS repo:
 
@@ -28,9 +28,9 @@ npm run fixtures:test
 
 ## Deploy
 
-GitHub Pages from **this repo** — see [DEPLOY.md](./DEPLOY.md) for DNS and custom domain (`skillerr.com`).
+Two independent deploys from `main` — **www.skillerr.com** (Vercel, production, docs under `/docs/`) and **dot-skill.github.io/skillerr-com** (GitHub Pages, secondary mirror). See [DEPLOY.md](./DEPLOY.md) for why the docs live under `/docs/` and how each deploy works.
 
-Workflow: [`.github/workflows/pages.yml`](./.github/workflows/pages.yml)
+Workflow: [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) · [`vercel.json`](./vercel.json)
 
 ## Contributing
 
