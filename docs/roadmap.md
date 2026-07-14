@@ -1,6 +1,6 @@
 # Roadmap
 
-Status: protocol **Draft 0.5.0**, evolving in the open via RFCs; the `@skillerr/*` reference packages implement it as it stands today. The goal is an open, interoperable contract — multiple conforming hosts and runtimes, not a single CLI.
+Status: protocol **1.0.0 (Stable)**; the `@skillerr/*` reference packages implement it at the same version. Future protocol changes go through the open RFC process, not silent revisions. The goal remains an open, interoperable contract — multiple conforming hosts and runtimes, not a single CLI.
 
 Public, contribution-oriented items only. Timing is not guaranteed. Site: [skillerr.com](https://www.skillerr.com/docs/).
 
@@ -46,15 +46,12 @@ Public, contribution-oriented items only. Timing is not guaranteed. Site: [skill
 - HTTP transparency-log server (same log format as the local registry)  
 - Stronger `verify` assertion language + fixtures  
 - Host adapters: local OpenAI-compatible, Cursor, Claude Code, Codex  
-- Second language runtime (Go or Rust) for Stable eligibility  
+- Second language runtime (Go or Rust) — ecosystem growth, not a
+  stability prerequisite: the protocol is versioned 1.0 (Stable) against
+  this reference implementation's own corpus already  
 - Official `SKILL.md` round-trip adapter tests  
 
 ## Later
 
 - Multi-issuer trust roots / key transparency  
-- Optional ledger anchors as one permanence kind (**never required**)  
-- Mark **Candidate**, then **Stable**, after two independent runtimes pass the same corpus  
-
-## Stability path
-
-Draft → Candidate → Stable requires independent conforming runtimes and a shared adversarial / conformance corpus — not a single vendor ship date.
+- Optional ledger anchors as one permanence kind (**never required**)

@@ -35,7 +35,7 @@ features:
 
 The Open `.skill` Protocol is an open specification and portable **`.skill`** format so AI agents can author, inspect, hand off, and run skills across hosts. `skillerr` is the reference implementation CLI.
 
-**Format:** `.skill` (sealed ZIP) · **Status:** Draft 0.5.0, evolving in the open via RFCs  
+**Format:** `.skill` (sealed ZIP) · **Status:** 1.0.0 (Stable)  
 **Reference CLI:** [`skillerr`](https://www.npmjs.com/package/skillerr) (bin: `skill`)  
 **Repo:** [dot-skill/skillerr](https://github.com/dot-skill/skillerr)
 
