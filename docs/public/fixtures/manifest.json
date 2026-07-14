@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-07-14T16:27:12.394Z",
+  "built_at": "2026-07-14T21:09:58.456Z",
   "fixtures": [
     {
       "name": "knowledge-only",
@@ -93,8 +93,8 @@
     {
       "name": "contract-foundation",
       "file": "/fixtures/contract-foundation.skill",
-      "skill_id": "skl_021e824dfc46",
-      "package_digest": "sha256:dcccbe22e693aa91d0e0a7f24143dbcbaf60119d7f456e209c5619db53099b0c",
+      "skill_id": "skl_800b05c8ace7",
+      "package_digest": "sha256:ad8adaf5a2d6a6823d34f0f08ed4acef19c1a5594abda396e888ed406aadb886",
       "completeness": {
         "kind": "completeness_report",
         "profile": "release",

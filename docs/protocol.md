@@ -1,7 +1,7 @@
 # Open `.skill` Protocol
 
 **Reference CLI:** [`skillerr`](https://www.npmjs.com/package/skillerr) · **Site:** [skillerr.com](https://www.skillerr.com/docs/)  
-**Status:** Draft 0.5.0 — evolving in the open via [RFCs](https://github.com/dot-skill/skillerr/tree/main/docs/rfcs), not frozen  
+**Status:** 1.0.0 (Stable) — future changes go through the open [RFC process](https://github.com/dot-skill/skillerr/tree/main/docs/rfcs), not silent revisions  
 **Extension:** `.skill`  
 **Container:** sealed ZIP
 
@@ -50,7 +50,7 @@ Keywords follow RFC 2119.
 | **Reference CLI** | `skillerr` |
 | **section** | Atomic authored unit (decision, integration, lesson, …) |
 | **SkillSource** | Structured authoring input before compile |
-| **SkillContract** | Transferable semantic contract (0.5+) — source of truth for release |
+| **SkillContract** | Transferable semantic contract (1.0+) — source of truth for release |
 | **extract / segment** | Identify candidates → incomplete contract scaffolds + missing reports |
 | **compile** | Source → `.skill` package (continuity or release) |
 | **mint** | Seal a complete release with creation attestation |
@@ -60,7 +60,7 @@ Keywords follow RFC 2119.
 ## Required components (release)
 
 1. **Agent context** — declared host, provider, model, deployment when known  
-2. **SkillContract** — complete 0.5 semantic source of truth  
+2. **SkillContract** — complete 1.0 semantic source of truth  
 3. **Intent and triggers** — purpose and when to apply  
 4. **Typed inputs and outputs** — schemas, optionality, defaults, sensitivity, ask / approval policy  
 5. **Workflow** — ordered steps, branches, decisions, failure / recovery edges  
