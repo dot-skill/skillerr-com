@@ -16,17 +16,23 @@ import {
   validatePackageBytes,
   inspectTrustView,
   verifyRekorAnchor,
-  loadTrustStore,
 } from "@skillerr/core";
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { createRequire } from "node:module";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-// Same trust store published at /docs/trust/trust-store.json — read from
-// the local file bundled into this function rather than fetching over
-// HTTP, so this endpoint has no dependency on the static site being up.
-const PUBLISHED_TRUST_STORE_PATH = join(__dirname, "..", "docs", "public", "trust", "trust-store.json");
+// Same trust store published at /docs/trust/trust-store.json. Loaded via a
+// static require() of a literal path (not a runtime-computed fs.readFileSync
+// path) specifically because Vercel's serverless bundler traces static
+// require()/import calls to decide which files to include in the deployed
+// function — a dynamically-built path is a well-documented way to get
+// ENOENT (or FUNCTION_INVOCATION_FAILED) in production despite working
+// fine locally, where every file is just... there.
+const require = createRequire(import.meta.url);
+let PUBLISHED_TRUST_STORE;
+try {
+  PUBLISHED_TRUST_STORE = require("../docs/public/trust/trust-store.json");
+} catch {
+  PUBLISHED_TRUST_STORE = { version: 1, keys: [] };
+}
 
 const MAX_BODY_BYTES = 12 * 1024 * 1024; // generous; protocol's own MAX_UNCOMPRESSED_BYTES gates the real limit
 
@@ -76,19 +82,13 @@ export default async function handler(req, res) {
       return;
     }
 
-    let trustStore;
-    try {
-      trustStore = JSON.parse(readFileSync(PUBLISHED_TRUST_STORE_PATH, "utf8"));
-    } catch {
-      trustStore = { version: 1, keys: [] };
-    }
-    const trustView = inspectTrustView(bytesArray, { trust_store: trustStore });
+    const trustView = inspectTrustView(bytesArray, { trust_store: PUBLISHED_TRUST_STORE });
 
     let transparency;
     const anchors = validation.manifest.anchors ?? [];
     const tlogAnchor = anchors.find((a) => a.kind === "transparency_log");
     if (tlogAnchor && trustView.sealed_manifest_digest) {
-      const pinnedKey = trustStore.keys?.find((k) => k.key_id === tlogAnchor.issuer);
+      const pinnedKey = PUBLISHED_TRUST_STORE.keys?.find((k) => k.key_id === tlogAnchor.issuer);
       transparency = pinnedKey
         ? await verifyRekorAnchor(tlogAnchor, trustView.sealed_manifest_digest, pinnedKey.public_key_pem)
         : { ok: false, error: `No published trust-store entry for issuer "${tlogAnchor.issuer}"` };
