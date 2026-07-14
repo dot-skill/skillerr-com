@@ -7,7 +7,13 @@ export default withMermaid(
     description:
       "A sealed, inspectable package format for AI agent skills — typed contract, integrity digests, trust states, and continuity handoff. Reference implementation: skillerr.",
     lang: "en-US",
-    base: "/skillerr-com/",
+    // GitHub Pages serves this site from a subpath (github.io/skillerr-com/),
+    // so every asset URL needs that prefix — but Vercel (and local dev)
+    // serve from the domain root, where that same prefix 404s on every
+    // CSS/JS/image request, producing an unstyled, broken-looking page.
+    // GITHUB_ACTIONS is set automatically in that one build environment;
+    // everywhere else (Vercel, local `vitepress dev`/`build`) defaults to root.
+    base: process.env.GITHUB_ACTIONS ? "/skillerr-com/" : "/",
     cleanUrls: true,
     lastUpdated: true,
     ignoreDeadLinks: [/^\/fixtures\/.*\.skill$/],
