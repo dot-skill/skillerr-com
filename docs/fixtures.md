@@ -2,6 +2,8 @@
 
 Conformance `.skill` packages built from the [dot-skill/skillerr](https://github.com/dot-skill/skillerr) examples tree. Use them to inspect TrustView, validate digests, and dry-run without inventing your own packages.
 
+Downloaded one and want to check it without installing the CLI? [Verify it here](/verify).
+
 Build and test locally:
 
 ```bash
