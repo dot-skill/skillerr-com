@@ -63,7 +63,7 @@ No. Optional ledger anchors may appear later as one permanence kind — never re
 
 Yes, for real use today — digests, validation, inspect-before-run, and the runtime capability gate are all real, tested code. The protocol spec is versioned Draft 0.5.0 and evolves in the open via RFCs as more hosts adopt it — a normal spec-maturity stage, not a claim that the tooling is unreliable.
 
-For production trust, configure a real Ed25519 issuer key (`skill keygen` + `--signer-key`) so mints earn `verified_issuer` trust — the bundled zero-setup key is for trying the CLI, not for shipping. See [What is verifiable](https://github.com/dot-skill/skillerr/blob/main/docs/WHAT-IS-VERIFIABLE.md) for exactly what a signature proves either way.
+For production trust, configure a real Ed25519 issuer key (`skill keygen` + `--signer-key`) so mints earn `verified_issuer` trust — the bundled zero-setup key is for trying the CLI, not for shipping. A configured key alone isn't enough, though: `verified_issuer` also requires real agent-runtime evidence (a session id or runtime markers), or the mint fails loudly with a clear error rather than silently downgrading. See the OSS repo's [Key ceremony](https://github.com/dot-skill/skillerr/blob/main/docs/KEY-CEREMONY.md) for the full generate → mint → pin walkthrough, and [What is verifiable](https://github.com/dot-skill/skillerr/blob/main/docs/WHAT-IS-VERIFIABLE.md) for exactly what a signature proves either way.
 
 ## Do local / offline agents work?
 

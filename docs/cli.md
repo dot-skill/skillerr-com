@@ -86,10 +86,18 @@ Release profile refuses if incomplete (`compile_refused`). Legacy alias: `skill 
 ### `skill mint`
 
 ```bash
-skill mint [--host name]
+skill mint [--host name] [--signer-key <pem>] [--key-id id]
+skill mint --transparency [--rekor-url <url>]
+skill mint --keyless [--fulcio-url <url>]
 ```
 
 Seal an already-compiled complete release. Host required. Continuity drafts cannot be minted.
+
+Default seal is the bundled development key (`development` trust only — never production). Pass `--signer-key` for a configured Ed25519 issuer seal (`skill keygen` generates one; see [Trust and security](/trust-and-security)) — `verified_issuer` trust additionally requires real agent-runtime evidence, not just a configured key.
+
+`--transparency` and `--keyless` each add an independent, optional anchor on top of the seal above — never a replacement for it, and combinable with each other or with no signer at all:
+- `--transparency` logs the sealed digest to the public Rekor transparency log using the configured signer key (requires `--signer-key`).
+- `--keyless` binds a second anchor to an OIDC identity via Fulcio instead of a pinned key — zero setup inside GitHub Actions, fails closed outside CI (no local/interactive login yet).
 
 ### `skill load`
 
@@ -136,10 +144,11 @@ skill contract-check contract.json --profile release
 
 ```bash
 skill inspect ./file.skill
-skill inspect ./file.skill --trust
+skill inspect ./file.skill --trust [--trust-store <path>]
+skill inspect ./file.skill --trust --claims
 ```
 
-Manifest, digests, seals, TrustView — **no execution**.
+Manifest, digests, seals, TrustView — **no execution**. `--claims` adds every claim split into two structurally separate lists — `verified` (checked by math) and `self_reported` (env/signer-asserted, never independently checked) — offline only, so any transparency/keyless anchor isn't re-verified here (see `skill verify-trust --claims` for that).
 
 ### `skill validate`
 
@@ -155,9 +164,12 @@ Structure and hash integrity. Rejects traversal, symlinks, bombs, and hash misma
 skill verify-trust ./file.skill
 skill verify-trust ./file.skill --profile minted
 skill verify-trust ./file.skill --allow-development-issuer
+skill verify-trust ./file.skill --allow-self-reported [--trust-store <path>]
+skill verify-trust ./file.skill --online
+skill verify-trust ./file.skill --claims
 ```
 
-Public-dev HMAC is development-only; use `--allow-development-issuer` only when intentionally inspecting reference mints.
+Public-dev HMAC is development-only; use `--allow-development-issuer` only when intentionally inspecting reference mints. `--trust-store` points at a specific pinned-key file (default `~/.skillerr/trust-store.json`). If the package has a transparency-log or keyless-identity anchor, this also verifies its inclusion proof / Fulcio certificate chain offline by default — `--online` additionally re-fetches the entry live from Rekor as an extra check. `--claims` adds the same verified/self-reported split as `skill inspect --trust --claims`, here including the anchor-verification results.
 
 ### `skill run`
 

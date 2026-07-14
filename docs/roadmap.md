@@ -14,18 +14,40 @@ Public, contribution-oriented items only. Timing is not guaranteed. Site: [skill
 - Local / offline agent provenance (Ollama, LM Studio, llama.cpp, custom)  
 - Transferable `SkillContract`, assessment APIs, and JSON Schema  
 - Structured contract-to-manifest / workflow compilation  
+- Production-grade signing — real Ed25519 issuer keys + a local trust store
+  (`skill keygen`, `skill mint --signer-key`, `skill verify-trust --trust-store`),
+  not just the bundled development-only key  
+- Adversarial package corpus (zip bombs, path tricks, hash mismatch, and
+  more) — runs on every push in CI, not just described here  
+- Public RFC folder (`docs/rfcs/`) — six RFCs; asymmetric signing has since
+  shipped as real code, the rest remain spec-only proposals open for
+  discussion  
+- Optional public transparency-log anchoring (`skill mint --transparency`),
+  built on the official sigstore/Rekor client libraries — see
+  [Trust and security](/trust-and-security)  
+- Fulcio keyless mint (`skill mint --keyless`) — an OIDC-bound identity
+  anchor, zero setup inside GitHub Actions  
+- Independent Rekor verification link on every anchored trust check, in
+  both the CLI and the [verify page](/verify) — a link to sigstore's own
+  public log, not just this tool's word  
+- Per-claim assurance model (`skill inspect --trust --claims`) — every
+  claim split into two structurally separate lists, verified vs.
+  self-reported, so nothing can misrepresent one as the other  
+- License/terms manifest slot (SPDX identifier + terms URL)  
+- Public verify utility on this site — upload a `.skill` file, get the
+  same TrustView `skill inspect --trust` reports, without installing
+  anything  
 
 ## Next (good contribution targets)
 
 - Independent implementation validating the published authoring schema  
-- Production-grade signing (replace public-dev HMAC; document key ceremony)  
+- Interactive/browser-login OIDC provider for `skill mint --keyless` run
+  locally, outside CI (the CI-ambient path already ships)  
 - HTTP transparency-log server (same log format as the local registry)  
 - Stronger `verify` assertion language + fixtures  
 - Host adapters: local OpenAI-compatible, Cursor, Claude Code, Codex  
 - Second language runtime (Go or Rust) for Stable eligibility  
-- Adversarial package corpus (zip bombs, path tricks, hash mismatch)  
 - Official `SKILL.md` round-trip adapter tests  
-- Public RFC folder  
 
 ## Later
 
