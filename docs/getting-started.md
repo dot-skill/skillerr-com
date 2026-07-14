@@ -1,6 +1,6 @@
 # Getting started
 
-Skillerr is **agent-first**. Install the reference CLI once, then paste a prompt to your AI. You review and approve; the agent runs the tooling.
+The Open `.skill` Protocol is **agent-first**. Install the reference CLI once, then paste a prompt to your AI. You review and approve; the agent runs the tooling.
 
 ```bash
 npm i -g skillerr
@@ -8,11 +8,13 @@ npm i -g skillerr
 
 Node ≥ 20. Site: [skillerr.com](https://dot-skill.github.io/skillerr-com/).
 
-Implementers wiring a product: start from [Protocol](/protocol) and the Skillerr libraries — the CLI is the reference surface, not the only path.
+Implementers wiring a product: start from [Protocol](/protocol) and the `@skillerr/*` libraries — the CLI is the reference surface, not the only path.
 
 ---
 
 ## Talk to your AI
+
+The prompt below is copy-paste for your coding agent's chat — it installs the CLI if needed, then packages this conversation into a `.skill` file: a sealed, typed package (not a chat export) that any conforming host can later inspect, hand off, or run. "Journey" means the redacted record of what you and the agent did; "checkpoint" means a partial, in-progress save; "release-complete" means every required field is filled in, not just "looks done."
 
 ### Create a skill from this chat
 

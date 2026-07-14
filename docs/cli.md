@@ -1,6 +1,6 @@
 # CLI reference
 
-Reference command surface for the Open `.skill` Protocol — for **agents and implementers**. Hosts may implement the same operations via Skillerr libraries without this CLI. Humans typically install once and prompt an agent; they do not need this page as a click-ops tutorial.
+Reference command surface for the Open `.skill` Protocol — for **agents and implementers**. Hosts may implement the same operations via the `@skillerr/*` libraries without this CLI. Humans typically install once and prompt an agent; they do not need this page as a click-ops tutorial.
 
 ```bash
 npm i -g skillerr
