@@ -13,6 +13,11 @@ type ApiResult = {
   issuer_class?: string;
   anchored?: boolean;
   transparency?: { ok: boolean; log_index?: string; integrated_time?: string; rekor_url?: string; error?: string };
+  keyless?: { ok: boolean; owner_identity?: string; owner_issuer?: string; log_index?: string; rekor_url?: string; error?: string };
+  claims?: {
+    verified: Array<{ field: string; value: string; method: string }>;
+    self_reported: Array<{ field: string; value: string; note: string }>;
+  };
   issues?: Array<{ severity: string; code: string; message: string }>;
   error?: string;
   docs?: string;
@@ -133,11 +138,49 @@ function trustClass(state?: string) {
             ✗ Transparency-log anchor present but failed verification: {{ result.transparency.error }}
           </p>
         </div>
-        <p v-else-if="result.anchored === false" class="transparency-none">
+        <div v-if="result.keyless">
+          <p v-if="result.keyless.ok" class="transparency-ok">
+            ✓ Keyless (Fulcio) identity anchor verified — {{ result.keyless.owner_identity }}
+            <span v-if="result.keyless.owner_issuer">(via {{ result.keyless.owner_issuer }})</span>.
+            <a v-if="result.keyless.rekor_url" :href="result.keyless.rekor_url" target="_blank" rel="noopener">
+              Check this entry yourself on sigstore's public log →
+            </a>
+          </p>
+          <p v-else class="transparency-fail">
+            ✗ Keyless identity anchor present but failed verification: {{ result.keyless.error }}
+          </p>
+        </div>
+        <p v-if="result.anchored === false" class="transparency-none">
           Not publicly anchored to a transparency log — trust here rests on the signature and trust-store check
           above, not on independent third-party verification.
         </p>
         <p class="docs-link"><a :href="result.docs">What does this trust state actually prove?</a></p>
+
+        <div v-if="result.claims" class="claims">
+          <h4>Claims — verified vs. self-reported</h4>
+          <p class="claims-note">
+            Every field above is in exactly one of these two lists, never both — nothing here can structurally
+            present a self-reported claim as verified.
+          </p>
+          <div class="claims-column claims-verified">
+            <p class="claims-heading">✓ Cryptographically verified</p>
+            <ul>
+              <li v-for="c in result.claims.verified" :key="c.field">
+                <code>{{ c.field }}</code>: {{ c.value }}
+                <span class="claims-method">— {{ c.method }}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="claims-column claims-self-reported">
+            <p class="claims-heading">⚠ Self-reported (not independently checked)</p>
+            <ul>
+              <li v-for="c in result.claims.self_reported" :key="c.field">
+                <code>{{ c.field }}</code>: {{ c.value }}
+                <span class="claims-method">— {{ c.note }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </template>
 
       <template v-else-if="result.ok === false && result.valid === false">
@@ -230,5 +273,51 @@ td:first-child {
 .transparency-none { color: var(--vp-c-text-2); font-size: 0.9em; }
 .docs-link {
   margin-top: 12px;
+}
+.claims {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+.claims h4 {
+  margin: 0 0 4px;
+  font-size: 1em;
+}
+.claims-note {
+  font-size: 0.85em;
+  color: var(--vp-c-text-2);
+  margin: 0 0 12px;
+}
+.claims-column {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+.claims-verified {
+  background: #d1f7d622;
+  border: 1px solid #0a5c1f33;
+}
+.claims-self-reported {
+  background: #fff3cd22;
+  border: 1px solid #7a5b0033;
+}
+.claims-heading {
+  font-weight: 600;
+  margin: 0 0 6px;
+  font-size: 0.9em;
+}
+.claims-verified .claims-heading { color: #0a5c1f; }
+.claims-self-reported .claims-heading { color: #7a5b00; }
+.claims-column ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.claims-column li {
+  font-size: 0.85em;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+.claims-method {
+  color: var(--vp-c-text-2);
 }
 </style>

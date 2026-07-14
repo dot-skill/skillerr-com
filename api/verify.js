@@ -72,7 +72,7 @@ export default async function handler(req, res) {
     });
     return;
   }
-  const { validatePackageBytes, inspectTrustView, verifyRekorAnchor, rekorSearchUrl } = core;
+  const { validatePackageBytes, inspectTrustView, verifyRekorAnchor, verifyKeylessAnchor, rekorSearchUrl, assessClaims } = core;
 
   try {
     const bytesArray = new Uint8Array(bytes);
@@ -107,6 +107,26 @@ export default async function handler(req, res) {
       }
     }
 
+    // Same additive pattern as transparency_log above, but checked against
+    // Fulcio's CA (part of the trusted root) instead of a trust-store-pinned
+    // key — see verifyKeylessAnchor / skill mint --keyless.
+    let keyless;
+    const keylessAnchor = anchors.find((a) => a.kind === "keyless_identity");
+    if (keylessAnchor && trustView.sealed_manifest_digest) {
+      const verified = await verifyKeylessAnchor(keylessAnchor, trustView.sealed_manifest_digest);
+      keyless = verified.ok
+        ? { ...verified, rekor_url: rekorSearchUrl(keylessAnchor, verified.log_index) }
+        : verified;
+    }
+
+    // Structural split, not just prose: nothing in this response can be
+    // read as "verified" unless assessClaims put it there after an actual
+    // check — see docs/WHAT-IS-VERIFIABLE.md.
+    const claims = assessClaims(trustView, {
+      transparency: transparency?.ok ? transparency : undefined,
+      keyless: keyless?.ok ? keyless : undefined,
+    });
+
     res.status(200).json({
       ok: true,
       valid: true,
@@ -120,8 +140,10 @@ export default async function handler(req, res) {
       // Present (true/false) regardless of whether the anchor verified, so
       // the UI can distinguish "not publicly anchored" from "anchored but
       // couldn't be verified" instead of treating both as silent absence.
-      anchored: Boolean(tlogAnchor),
+      anchored: Boolean(tlogAnchor || keylessAnchor),
       ...(transparency ? { transparency } : {}),
+      ...(keyless ? { keyless } : {}),
+      claims,
       docs: "https://www.skillerr.com/docs/what-is-verifiable",
     });
   } catch (e) {
