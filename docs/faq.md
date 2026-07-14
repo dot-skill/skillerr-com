@@ -1,8 +1,8 @@
 # FAQ
 
-## What is Skillerr?
+## What is "Skillerr"?
 
-Skillerr defines an open protocol and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Site: [skillerr.com](https://dot-skill.github.io/skillerr-com/).
+"Skillerr" names the reference CLI package (`npm i -g skillerr`), not the project. The project is the **Open `.skill` Protocol** — an open specification and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Full breakdown of every name involved (protocol, format, npm scope, CLI, wire identifiers): [Naming](https://github.com/dot-skill/skillerr/blob/main/docs/NAMING.md). Site: [skillerr.com](https://dot-skill.github.io/skillerr-com/).
 
 ## What is the Open `.skill` Protocol?
 
@@ -10,7 +10,7 @@ An open specification for **portable AI skills**: a sealed `.skill` package with
 
 ## What is the `skillerr` package?
 
-[`skillerr`](https://www.npmjs.com/package/skillerr) is the **reference implementation** CLI (bin: `skill`) — one conforming surface for create, inspect, and run. The protocol is not limited to this package; hosts may integrate the Skillerr protocol libraries or ship an independent conforming port.
+[`skillerr`](https://www.npmjs.com/package/skillerr) is the **reference implementation** CLI (bin: `skill`) — one conforming surface for create, inspect, and run. The protocol is not limited to this package; hosts may integrate the `@skillerr/*` protocol libraries or ship an independent conforming port.
 
 ## How do I use it?
 

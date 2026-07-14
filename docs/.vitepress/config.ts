@@ -79,6 +79,7 @@ export default withMermaid(
           items: [
             { text: "FAQ", link: "/faq" },
             { text: "Roadmap", link: "/roadmap" },
+            { text: "Naming", link: "https://github.com/dot-skill/skillerr/blob/main/docs/NAMING.md" },
           ],
         },
       ],
