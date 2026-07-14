@@ -1,56 +1,29 @@
-# Deploy skillerr.com (GitHub Pages)
+# Deploy skillerr.com
 
-Free static hosting from **dot-skill/skillerr-com** — website-only repo, separate from the OSS protocol repo.
+This site deploys to **two places** from the same `main` branch, independently:
 
-## Live now
+1. **www.skillerr.com** (Vercel, production) — the real domain, docs served under `/docs/`
+2. **dot-skill.github.io/skillerr-com/** (GitHub Pages) — kept live as a secondary/fallback mirror
 
-**https://dot-skill.github.io/skillerr-com/**
+Both are driven by the same `npm run build`, just with different `base` paths (see `docs/.vitepress/config.ts`) and different output-directory wiring (see `vercel.json` for Vercel; `.github/workflows/pages.yml` for Pages).
 
-Custom domain `skillerr.com` is **temporarily disabled** until GoDaddy DNS points at GitHub Pages (not the registrar park IP). The site serves on the project Pages URL above without redirecting to a broken apex.
+## Why docs live under `/docs/`, not the domain root
 
-When DNS is ready:
+`www.skillerr.com`'s bare root is reserved for a future product built on top of the Open `.skill` Protocol — not this documentation site. Moving the docs to a subpath now (while the site is new, with minimal existing backlinks) avoids a painful URL migration later once that product exists and needs the root. Visiting the bare domain root today 302-redirects to `/docs/` (see `vercel.json`'s `redirects` — deliberately temporary, not a permanent 301, since this mapping will change).
 
-1. Point apex A records and optional `www` CNAME (see below).
-2. Restore `docs/public/CNAME` with `skillerr.com`.
-3. Re-add custom domain in **dot-skill/skillerr-com** → Settings → Pages.
-4. Optionally set VitePress `base` back to `/` if you want root-relative URLs on the custom domain.
+## Vercel (production)
 
-## What ships
+Project imported from **dot-skill/skillerr-com** on Vercel, auto-deploys on push to `main`.
 
-- VitePress site (agent-first pages, brand mark, Mermaid workflows)
-- Tested `.skill` fixtures in `docs/public/fixtures/` (built from [dot-skill/skillerr](https://github.com/dot-skill/skillerr) `examples/` at deploy)
-- `llms.txt` at site root for agents
+- `vercel.json`'s `buildCommand` runs the normal site build, then wraps the VitePress output into `vercel-dist/docs/` so it's served at `/docs/*`, matching the VitePress `base: "/docs/"` used when `process.env.VERCEL` is set.
+- Fixtures build standalone on Vercel via the npm-installed `skillerr` CLI + `fixtures-src/` (vendored example sources) — see the comment at the top of `scripts/build-fixtures.mjs`. No sibling repo checkout needed or possible on Vercel.
+- `FIXTURES_SIGNING_KEY` isn't set on Vercel today, so the release fixture mints as `development` trust there, not `verified_issuer` — only the GitHub Actions deploy has that secret. Not a bug, just means the two mirrors' fixture trust states can legitimately differ until this secret is also added to Vercel.
 
-## One-time GitHub setup
+## GitHub Pages (secondary)
 
-1. **dot-skill/skillerr-com** → Settings → Pages  
-   - Source: **GitHub Actions**
-2. Custom domain: **off for now** (see “Live now” above)
+**dot-skill/skillerr-com** → Settings → Pages → Source: GitHub Actions.
 
-Workflow: `.github/workflows/pages.yml` (runs on push to `main`). CI checks out `dot-skill/skillerr` to build fixtures, then builds this site.
-
-VitePress `base` is `/skillerr-com/` for project Pages (required — assets 404 if set to `/`).
-
-## DNS (registrar) — add later
-
-Apex `skillerr.com` (GitHub Pages A records):
-
-| Type | Host | Value |
-|------|------|-------|
-| A | `@` | `185.199.108.153` |
-| A | `@` | `185.199.109.153` |
-| A | `@` | `185.199.110.153` |
-| A | `@` | `185.199.111.153` |
-
-Optional `www`:
-
-| Type | Host | Value |
-|------|------|-------|
-| CNAME | `www` | `dot-skill.github.io` |
-
-**Note:** Custom domain must be configured on **skillerr-com** (not `dot-skill/skillerr`). After migration, remove any custom domain from the OSS repo Pages settings if it was set there.
-
-Verify: `dig skillerr.com +short` should return the four A records (not a GoDaddy park IP).
+Workflow: `.github/workflows/pages.yml` (runs on push to `main`). CI checks out `dot-skill/skillerr` as a sibling to build real fixtures (the sibling checkout Vercel can't do), then builds this site with `base: "/skillerr-com/"` (`GITHUB_ACTIONS` env var is set automatically in this one environment — see the comment in `docs/.vitepress/config.ts`).
 
 ## Local build
 
@@ -61,10 +34,17 @@ cd ../skillerr && npm run build && cd -
 npm install
 DOT_SKILL_ROOT=../skillerr npm run build
 npm run fixtures:test
-npm run preview        # http://localhost:4173/skillerr-com/
+npm run preview        # http://localhost:4173/ (base defaults to / locally)
 ```
 
-## Pages (13 routes)
+To test the Vercel-specific build path locally (npm-CLI fallback, no sibling checkout):
+
+```bash
+npm install   # picks up the `skillerr` devDependency
+VERCEL=1 npm run build
+```
+
+## Pages (13 routes, under `/docs/` on production)
 
 | Path | Content |
 |------|---------|
@@ -72,6 +52,8 @@ npm run preview        # http://localhost:4173/skillerr-com/
 | `/getting-started` | Copy-paste agent prompts |
 | `/workflows` | Mermaid create / ingest / extract diagrams |
 | `/create-a-skill` | Create path |
+| `/convert-a-skill-md` | Convert an existing SKILL.md |
+| `/evaluate-and-score` | Eval / score path |
 | `/ingest-a-skill` | Ingest path |
 | `/agents` | Agent authoring rules |
 | `/protocol` | Protocol spec overview |
@@ -84,11 +66,11 @@ npm run preview        # http://localhost:4173/skillerr-com/
 
 ## Fixtures
 
-Built from `dot-skill/skillerr` `examples/` via `scripts/build-fixtures.mjs`:
+Built from `dot-skill/skillerr` `examples/` (sibling checkout) or `fixtures-src/` (vendored copy, Vercel) via `scripts/build-fixtures.mjs`:
 
 - `knowledge-only.skill` (continuity)
 - `parameterized-integration.skill` (continuity)
 - `code-changing.skill` (continuity)
-- `contract-foundation.skill` (release)
+- `contract-foundation.skill` (release — the only mintable profile)
 
-Manifest: `/fixtures/manifest.json`
+Manifest: `/docs/fixtures/manifest.json` (production) or `/fixtures/manifest.json` (GitHub Pages / local).

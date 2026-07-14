@@ -53,7 +53,7 @@ The three `continuity`-profile fixtures (`knowledge-only`, `parameterized-integr
 `contract-foundation.skill` is a `release`-profile package minted with a real, configured Ed25519 issuer key (`issuer_class: configured_ed25519`). It verifies as `trust_state: verified_issuer` against the published trust store:
 
 ```bash
-skill verify-trust ./contract-foundation.skill --trust-store https://dot-skill.github.io/skillerr-com/trust/trust-store.json
+skill verify-trust ./contract-foundation.skill --trust-store https://www.skillerr.com/docs/trust/trust-store.json
 ```
 
 The signing key (`skillerr-com-fixtures-2026`) is scoped to sign this one site fixture only — it is not a general-purpose issuer key. Its public half is published at [`/trust/trust-store.json`](/trust/trust-store.json). Always inspect TrustView before run regardless of trust state. Details: [Trust and security](/trust-and-security).
