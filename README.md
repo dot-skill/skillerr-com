@@ -1,6 +1,6 @@
 # skillerr.com
 
-Public marketing and agent-first documentation site for **Skillerr** — [skillerr.com](https://dot-skill.github.io/skillerr-com/).
+Public agent-first documentation site for the **Open `.skill` Protocol** — [skillerr.com](https://dot-skill.github.io/skillerr-com/).
 
 This repo is **website only** (VitePress, fixtures gallery, `llms.txt`). The open protocol, reference CLI, and implementer docs live in the OSS repo:
 
