@@ -6,7 +6,7 @@ export default withMermaid(
   defineConfig({
     title: "Open .skill Protocol",
     description:
-      "A sealed, inspectable package format for AI agent skills — typed contract, integrity digests, trust states, and continuity handoff. Reference implementation: skillerr.",
+      "Portable, verifiable skills for AI agents. Package a skill once as a sealed .skill file — typed inputs, ordered steps, provenance, and a cryptographic seal — and any agent or host can inspect, verify, and run it.",
     lang: "en-US",
     // Three hosting contexts, three base paths:
     // - GitHub Pages serves from a subpath (github.io/skillerr-com/) —
@@ -34,7 +34,7 @@ export default withMermaid(
         {
           name: "description",
           content:
-            "Open .skill Protocol — a sealed, inspectable package format for AI agent skills. Install the reference CLI (skillerr) once, then talk to your AI.",
+            "Create, inspect, and run portable .skill packages for AI agents — typed, sealed, and verifiable before anyone runs them.",
         },
       ],
       ["meta", { property: "og:site_name", content: "Open .skill Protocol" }],
@@ -52,6 +52,7 @@ export default withMermaid(
       versions: { protocol: protocolVersion, package: packageVersion },
       nav: [
         { text: "Docs", link: "/getting-started" },
+        { text: "How it works", link: "/concepts" },
         { text: "Protocol", link: "/protocol" },
         { text: "Verify", link: "/verify" },
         { text: "Fixtures", link: "/fixtures" },
@@ -66,6 +67,7 @@ export default withMermaid(
           text: "Start",
           items: [
             { text: "Overview", link: "/" },
+            { text: "How it works", link: "/concepts" },
             { text: "Getting started", link: "/getting-started" },
             { text: "Workflows", link: "/workflows" },
           ],
@@ -95,7 +97,7 @@ export default withMermaid(
           items: [
             { text: "FAQ", link: "/faq" },
             { text: "Roadmap", link: "/roadmap" },
-            { text: "Naming", link: "https://github.com/dot-skill/skillerr/blob/main/docs/NAMING.md" },
+            { text: "Naming", link: "https://github.com/dot-skill/skillerr/wiki/Naming" },
           ],
         },
       ],
@@ -103,7 +105,7 @@ export default withMermaid(
         { icon: "github", link: "https://github.com/dot-skill/skillerr" },
       ],
       footer: {
-        message: `Open .skill Protocol — ${protocolVersion} (Stable)`,
+        message: `Open .skill Protocol — ${protocolVersion} (Stable) · skillerr CLI v${packageVersion} · MIT`,
         copyright: "MIT © Open .skill Protocol contributors",
       },
       search: { provider: "local" },
