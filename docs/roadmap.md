@@ -6,7 +6,7 @@ Public, contribution-oriented items only. Timing is not guaranteed. Site: [skill
 
 ## Available in the reference today
 
-- `.skill` container + digests  
+- `.skill` format + digests  
 - Mint + creation attestation (reference implementation)  
 - Free local transparency-log registry  
 - Reference runtime + CLI (`skillerr` / `skill`)  

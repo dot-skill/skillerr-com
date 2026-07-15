@@ -7,7 +7,7 @@
 
 This is an open specification and portable `.skill` format so AI apps and agents can author, inspect, version, and run skills interoperably. The `skillerr` CLI is the reference implementation — not the definition of the protocol.
 
-A conforming **host** is any runtime that loads a `.skill` artifact according to this specification. Independent conforming implementations are welcome.
+A conforming **host** is any runtime that loads a `.skill` package according to this specification. Independent conforming implementations are welcome.
 
 A `.skill` is a deterministic ZIP: typed inputs, executable workflow, pinned knowledge, redacted journey provenance, optional generation token usage, integrity digests, and mint attestation.
 
@@ -17,9 +17,9 @@ Markdown is never the protocol. `skill to-skill-md` is a lossy adapter only.
 
 Keywords follow RFC 2119.
 
-- A conforming host **MUST** reject invalid `.skill` artifacts (structure / digest failure).
+- A conforming host **MUST** reject invalid `.skill` packages (structure / digest failure).
 - A conforming host **SHOULD** expose TrustView (digests, seals, issuer class) before execute.
-- A conforming host **MUST NOT** treat markdown `SKILL.md` as the protocol artifact.
+- A conforming host **MUST NOT** treat markdown `SKILL.md` as the protocol package.
 - Implementations **MAY** offer additional UI beyond the protocol.
 - Claim conformance only against the published test suite and fixtures when available.
 
@@ -27,7 +27,7 @@ Keywords follow RFC 2119.
 
 | Need | Protocol answer |
 |------|-----------------|
-| Move a skill between tools | One sealed artifact with digests — not a transcript dump |
+| Move a skill between tools | One sealed package with digests — not a transcript dump |
 | Author with AI agents | Structured sections + completeness gates; humans approve release |
 | Run safely | Inspect TrustView / digests / seals **before** execute |
 | Hand off mid-work | Continuity profile packages gaps without minting a fake release |

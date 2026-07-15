@@ -24,7 +24,7 @@ See [Getting started](/getting-started).
 
 ## Why would an app implement the protocol?
 
-So skills are interoperable: one artifact moves between tools with inspectable digests, TrustView before execute, continuity handoffs, and release completeness gates — instead of proprietary chat dumps or free-form markdown alone.
+So skills are interoperable: one package moves between tools with inspectable digests, TrustView before execute, continuity handoffs, and release completeness gates — instead of proprietary chat dumps or free-form markdown alone.
 
 ## How is this different from `SKILL.md`?
 

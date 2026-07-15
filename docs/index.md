@@ -3,53 +3,45 @@ layout: home
 
 hero:
   name: Open .skill Protocol
-  text: Sealed, inspectable packages for AI agent skills
-  tagline: Chat context vanishes. Markdown skills drift. Sealed .skill packages carry typed I/O, workflow, and cryptographically verifiable trust — install once, then talk to your AI.
+  text: Portable, verifiable skills for AI agents.
+  tagline: Package a skill once as a sealed .skill file — typed inputs, ordered steps, provenance, and a cryptographic seal — and any agent or host can inspect, verify, and run it. The integrity layer on top of your SKILL.md.
   actions:
     - theme: brand
-      text: Getting started
+      text: Get started
       link: /getting-started
     - theme: alt
-      text: Protocol spec
+      text: Read the protocol
       link: /protocol
     - theme: alt
-      text: Download fixtures
-      link: /fixtures
+      text: How it works
+      link: /concepts
 
 features:
-  - icon: 🤖
-    title: Agent-first
-    details: Humans install skillerr once, then paste prompts. Agents run init, propose, checkpoint, compile, inspect, and dry-run.
-  - icon: 📦
-    title: Portable .skill
-    details: Sealed ZIP with typed I/O, workflow, pinned knowledge, redacted provenance, digests, and optional mint — not a chat dump.
+  - icon: 📐
+    title: Typed contract, not freeform prose
+    details: Every skill declares its intent, triggers, inputs and outputs, ordered steps, required permissions, and verification checks — so the same package means the same thing to every agent and host.
+  - icon: 🔒
+    title: Content integrity built in
+    details: A content-addressed skill_id and SHA-256 package and manifest digests make any change after packaging detectable. A license/terms slot travels with the package too.
   - icon: 🔍
-    title: Inspect before run
-    details: TrustView exposes digests and seals without executing. Validate, dry-run, then opt in to execute.
+    title: Inspect before you run
+    details: See the seal, issuer, and digests — and a clean split of cryptographically verified vs. self-reported claims — without executing anything.
+  - icon: 🪜
+    title: A real trust ladder
+    details: Seal with a development key for local work, a configured Ed25519 issuer key for verifiable authorship, or anchor the digest in a public transparency log that anyone can check independently.
   - icon: 🔀
-    title: Continuity handoff
-    details: Checkpoint mid-work packages for AI↔AI resume. Release compile refuses incomplete contracts.
-  - icon: 🔗
-    title: Independently verifiable
-    details: Optional Rekor transparency-log anchoring and Fulcio keyless mint — every check produces a public sigstore.dev link anyone can verify, not just this tool's word.
+    title: Continuity and release, as first-class modes
+    details: Hand off work-in-progress between agents as a continuity package; cut a release only when the contract is complete and a human has reviewed it — release compiles refuse anything less.
   - icon: 🧾
-    title: Verified vs. self-reported
-    details: Every trust claim is split into two separate lists — cryptographically checked, or asserted-but-unverified. Nothing can misrepresent one as the other.
-  - icon: 🔐
-    title: Source of truth, by construction
-    details: Two independent digests bind content and permissions/capabilities into the signed seal. Edit a byte, the seal breaks — a real foundation for skills as sellable, licensable assets.
-  - icon: 🛡️
-    title: Deny-by-default runtime
-    details: Execute refuses unsigned/untrusted packages and undeclared capabilities unless explicitly allowed — not an opt-out safety net.
+    title: Provenance you can trust
+    details: Agents author; humans review and approve. Declared agent host and model travel with the package, and self-reported claims are never presented as verified.
+  - icon: ⬆️
+    title: Upgrade your existing SKILL.md
+    details: One command converts a SKILL.md or skill-creator folder into a sealed, inspectable .skill package.
+  - icon: 🌐
+    title: Open protocol, portable format
+    details: The .skill container is defined by the spec, not the tool — skillerr and the @skillerr/* reference libraries are one implementation, and independent implementations are welcome.
 ---
-
-## Sealed `.skill` packages
-
-The Open `.skill` Protocol is an open specification and portable **`.skill`** format so AI agents can author, inspect, hand off, and run skills across hosts. `skillerr` is the reference implementation CLI.
-
-**Format:** `.skill` (sealed ZIP) · **Status:** {{ $protocolVersion }} (Stable)  
-**Reference CLI:** [`skillerr`](https://www.npmjs.com/package/skillerr) @ **{{ $packageVersion }}** (bin: `skill`)  
-**Repo:** [dot-skill/skillerr](https://github.com/dot-skill/skillerr)
 
 ## Install once
 
@@ -57,11 +49,21 @@ The Open `.skill` Protocol is an open specification and portable **`.skill`** fo
 npm i -g skillerr
 ```
 
-Node ≥ 20. After that, talk to your agent — not a human CLI checklist.
+Node ≥ 20. `skillerr` is the reference CLI (bin: `skill`).
 
-## Talk to your AI
+## Getting started
 
-The whole point: you don't need to learn the CLI. Install it, then just ask.
+**Humans** install once, then direct your agent:
+
+```bash
+npm i -g skillerr        # reference CLI, bin: skill
+```
+
+**Agents** start by reading their own instructions:
+
+```bash
+skill agent-guide        # the exact create / inspect / handoff protocol
+```
 
 <div class="prompt-block">
 
@@ -72,27 +74,6 @@ npm i -g skillerr
 
 Then tell your AI:
 "Use skillerr to turn this conversation into a .skill I can reuse."
-```
-
-Your agent runs `skill agent-guide` itself to learn the exact steps — you don't
-have to know them.
-
-</div>
-
-<div class="prompt-block">
-
-**More control — exact sections, redaction, mint**
-
-```text
-Run these exact commands in your terminal, in order:
-
-1. npm i -g skillerr          (skip if `skill --version` already works)
-2. export SKILL_HOST=cursor   (replace "cursor" with your actual tool name)
-
-Then, from this conversation, create a portable .skill with a redacted journey
-and exact sections I approved (secrets as {{refs}}). Checkpoint for handoff, or
-compile --approve --mint when release-complete. Do not invent filler. Show
-status and the output path.
 ```
 
 </div>
@@ -108,39 +89,17 @@ Summarize trust warnings. Do not execute for real unless I ask.
 
 </div>
 
-More starters: [Getting started](/getting-started) · [Convert a SKILL.md](/convert-a-skill-md) · [Evaluate & score](/evaluate-and-score) · [Agents](/agents) · [Workflows](/workflows)
+More starters: [Getting started](/getting-started) · [Convert a SKILL.md](/convert-a-skill-md) · [Evaluate & score](/evaluate-and-score) · [Agents](/agents) · [Workflows](/workflows) · [Full CLI reference](/cli)
 
-Prefer running commands yourself instead of prompting an agent? See the [full CLI reference](/cli) — every command and every flag, in one page.
+## The trust ladder
 
-## Why `.skill` is a source of truth, not just a file
+Trust is explicit and layered — you choose how much you need, and verifiers can always tell which rung a package sits on:
 
-A `.skill` binds two independent digests into one signed seal: `package_digest` covers the actual content (workflow, knowledge, provenance — edit a byte, it breaks), and `sealed_manifest_digest` covers identity plus the full permissions/capabilities/policy declaration. Mint signs both together. `skill verify-trust` recomputes and compares them independently, offline — it doesn't trust the file's own claims about itself.
+1. **Development** — sealed for local iteration. Clearly labeled, never mistaken for production trust.
+2. **Verified issuer** — signed with your Ed25519 key; verifiers who pin your key get cryptographic proof of authorship and integrity.
+3. **Publicly anchored** — the sealed digest is logged to a public transparency log ([sigstore](https://www.sigstore.dev)'s Rekor/Fulcio), independently verifiable by anyone without trusting the tool.
 
-That's what turns a `.skill` package into something more than a convenient format: a **tamper-evident unit of knowledge**, authored by a human, an AI, or both, that a third party can verify without asking the author to vouch for it. Every trust claim is split into `verified` (cryptographically checked) and `self_reported` (asserted, not checked) — never blended, never presented as more certain than it is (`skill inspect --trust --claims`).
-
-That honesty is the foundation for skills as **licensable, sellable assets**: a manifest-level `license` / `license_url` slot ships today, and a buyer can verify exactly what they're getting — down to the byte — before trusting it. Independent public verification (below) means that trust doesn't depend on taking the seller's word for it either.
-
-## Independently verifiable, not just self-certified
-
-Optional mint-time anchoring logs the sealed digest to a public transparency log, so anyone can check an entry themselves — not just trust this tool:
-
-- **`skill mint --transparency`** — anchors to [sigstore's](https://www.sigstore.dev) public Rekor log using your own signing key. Permanent, world-readable, independently queryable at `search.sigstore.dev`.
-- **`skill mint --keyless`** — a second, independent anchor via Fulcio, bound to your CI's OIDC identity (zero setup inside GitHub Actions — the same mechanism npm's own trusted publishing uses). No long-lived key to leak.
-
-`skill verify-trust` re-derives both checks from scratch — inclusion proof, signature, and (for keyless) the signer's identity straight off the certificate — and prints the same public verification URL so a stranger can double-check independently. See [Trust and security](/trust-and-security) and [Verify a skill](/verify).
-
-**Do you need a blockchain for any of this? No.** The transparency log above already gives you a permanent, public, tamper-evident record today. A distributed-ledger anchor is on the roadmap as one more *optional* permanence kind for the future — never a requirement to mint, verify, or trust a `.skill`. See [Roadmap](/roadmap).
-
-## Continuity: handoff between AIs, not just humans
-
-`skill checkpoint` and `skill load` exist because agent-to-agent handoff is a different problem than "save a file." A continuity package:
-
-- Redacts the journey summary at write time — never a raw transcript or chain-of-thought.
-- **Cannot be minted** — continuity and release are structurally different compile profiles; the CLI refuses to seal a continuity package even if asked.
-- Carries a completeness report (what's done, what's missing) instead of pretending partial work is finished.
-- Rejects sections a human tried to hand-edit into an agent-authored slot — provenance is checked on read, not just trusted.
-
-Any agent — same host or a different one entirely — runs `skill load ./file.skill` and gets back exactly that: typed knowledge, redacted journey, and an honest completeness report to resume from. That's the AI↔AI resume story, not a file copy with extra steps.
+A seal proves who issued a package and that it hasn't changed — never that the skill is correct or safe. See [What is verifiable](/trust-and-security).
 
 ## What's in a `.skill`
 
@@ -152,6 +111,16 @@ example.skill
 ├── provenance/          # redacted journey + generation_usage
 └── signatures/          # mint attestation (release)
 ```
+
+## Bare `SKILL.md` vs. sealed `.skill`
+
+| | Bare `SKILL.md` | Sealed `.skill` |
+|---|---|---|
+| Structure | Freeform prose | Typed contract: intent, triggers, I/O, steps, permissions, verification |
+| Integrity | None | Content-addressed id + SHA-256 digests; tamper-evident |
+| Trust before run | None | Inspect seal, issuer, and verified-vs-self-reported claims without executing |
+| Authorship | None | Development → verified-issuer → publicly anchored, your choice |
+| Handoff | Copy the chat | Continuity package: typed, redacted, resumable |
 
 ## Reference packages
 
