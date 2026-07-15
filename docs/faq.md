@@ -28,7 +28,7 @@ So skills are interoperable: one package moves between tools with inspectable di
 
 ## How is this different from `SKILL.md`?
 
-Structured package + digests + mint + continuity handoff + release compile gates. Markdown is a lossy adapter only (`skill to-skill-md`).
+Structured package + digests + mint + continuity handoff + release compile gates. `skill to-skill-md` (single file, quick) is a lossy adapter; `skill export-skill` (a full folder) preserves frontmatter (license/compatibility/metadata/allowed-tools) and `scripts/`/`references/`/`assets/`.
 
 ## How is skillerr different from `npx skills add` or a skills directory?
 
