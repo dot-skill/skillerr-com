@@ -36,6 +36,15 @@ skill init --title "Demo"
 
 Creates a local `.skill/` working tree (`sections/`, stage index, config).
 
+### `skill contract-init`
+
+```bash
+skill contract-init
+skill contract-init --force   # overwrite an existing .skill/contract.json
+```
+
+Scaffolds `.skill/contract.json` — a deliberately incomplete `SkillContract` for the agent to fill in field by field before release compile.
+
 ### `skill journey`
 
 ```bash
@@ -140,6 +149,15 @@ skill contract-check contract.json --profile release
 
 ## Ingest / run / trust
 
+### `skill ingest`
+
+```bash
+skill ingest ./SKILL.md -o out.skill
+skill ingest ./skill-creator-folder -o out.skill --host cursor
+```
+
+Imports a `SKILL.md` file or a skill-creator-style folder into a continuity `.skill`. Never fabricates release completeness — prints exactly what still needs authoring before it could compile as a release.
+
 ### `skill inspect`
 
 ```bash
@@ -187,16 +205,37 @@ Deny-by-default for undeclared network / filesystem / secrets.
 skill unpack ./file.skill
 skill pack ./source.json -o out.skill --approve --profile release
 skill to-skill-md ./file.skill                      # lossy markdown adapter
+skill migrate-legacy ./old-skill.json -o out.skill   # legacy Skill JSON shape → current package
 ```
+
+### `skill eval` / `skill score`
+
+```bash
+skill eval ./workspace --responses responses.json --grade grade.json -o benchmark.json
+skill eval ./file.skill --attach                     # seal results into the next compile
+skill score ./file.skill --emit
+```
+
+Runs `contract.evals`, grades what's machine-checkable, and leaves the rest `pending_human` rather than fabricating a pass. `skill score` maps the resulting `provenance/benchmark.json` into `@skillerr/skill-score`'s scoring input. Full walkthrough: [Evaluate & score](/evaluate-and-score).
+
+### `skill publish`
+
+```bash
+skill publish
+```
+
+Deliberately refuses — publish is not part of the open `.skill` happy path. Share the file directly, or use `skill registry publish` for the optional local log below.
 
 ### Optional local registry
 
 ```bash
 skill registry list
 skill registry lookup <digest>
+skill registry publish ./file.skill
+skill registry verify ./file.skill
 ```
 
-Local transparency log of package digests — not a hosted marketplace.
+Local, append-only transparency log of package digests — explicitly not a hosted marketplace. Distinct from the public Rekor transparency log used by `skill mint --transparency` (see [Trust and security](/trust-and-security)).
 
 ---
 
