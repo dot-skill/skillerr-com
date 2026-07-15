@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: Open .skill Protocol
-  text: Portable, verifiable skills for AI agents.
-  tagline: Package a skill once as a sealed .skill file — typed inputs, ordered steps, provenance, and a cryptographic seal — and any agent or host can inspect, verify, and run it. The integrity layer on top of your SKILL.md.
+  text: The trust layer for Agent Skills.
+  tagline: Seal, verify, and prove provenance for the skills your agents run. .skill doesn't replace your SKILL.md, it wraps it in a typed contract, an integrity seal, and provenance, so the same skill keeps working everywhere Agent Skills are supported, and gains inspect-before-run trust on top.
   actions:
     - theme: brand
       text: Get started
@@ -42,6 +42,20 @@ features:
     title: Open protocol, portable format
     details: The .skill container is defined by the spec, not the tool — skillerr and the @skillerr/* reference libraries are one implementation, and independent implementations are welcome.
 ---
+
+## Where skillerr fits
+
+The Agent Skills ecosystem has three layers, and skillerr owns the third, complementary to the other two, not competing with either:
+
+| Layer | Job | Who |
+|---|---|---|
+| Authoring | Defines the `SKILL.md` format itself | [Agent Skills spec](https://agentskills.io/specification) |
+| Distribution | Installs a skill onto your machine | [vercel-labs/skills](https://github.com/vercel-labs/skills), [skills.sh](https://skills.sh) |
+| Trust / integrity | Seals, signs, records provenance, lets you inspect before you run | **skillerr** |
+
+`npx skills add owner/repo` installs unverified instructions and executable scripts from any repo, with no integrity or provenance check. Distribution tools install a skill; skillerr lets you verify one, its integrity, issuer, and provenance, before you run it.
+
+**No telemetry, no tracking.** skillerr makes no network calls unless you explicitly opt in (`--transparency`, `--keyless`, `--online`).
 
 ## Install once
 
@@ -132,3 +146,7 @@ example.skill
 | `@skillerr/runtime` | Inspect / dry-run / execute |
 | `@skillerr/workspace` | Local `.skill/` working tree |
 | `@skillerr/registry` | Optional local transparency log |
+
+## Agent Skills ecosystem
+
+[Agent Skills specification](https://agentskills.io/specification) (authoring format) · [vercel-labs/skills](https://github.com/vercel-labs/skills) (`npx skills add`, distribution) · [skills.sh](https://skills.sh) (directory) · [Claude Code skills docs](https://code.claude.com/docs/en/skills)

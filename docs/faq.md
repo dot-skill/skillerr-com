@@ -30,6 +30,10 @@ So skills are interoperable: one package moves between tools with inspectable di
 
 Structured package + digests + mint + continuity handoff + release compile gates. Markdown is a lossy adapter only (`skill to-skill-md`).
 
+## How is skillerr different from `npx skills add` or a skills directory?
+
+They solve different problems and work together. Installers like [vercel-labs/skills](https://github.com/vercel-labs/skills) and directories like [skills.sh](https://skills.sh) get a skill onto your machine; they don't check its integrity or provenance before you run it. skillerr is the verification layer: `skill ingest` wraps a standard Agent Skills folder in a typed contract, an integrity seal, and provenance, so you can inspect and verify a skill, whether you wrote it or installed it, before running it.
+
 ## Continuity vs release?
 
 - **Continuity** — work handoff between agents or hosts (partial OK, not mintable).  
