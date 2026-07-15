@@ -10,12 +10,12 @@
     "fixtures:test": "node scripts/test-fixtures.mjs"
   },
   "dependencies": {
-    "@skillerr/core": "^1.0.1"
+    "@skillerr/core": "^1.0.2"
   },
   "devDependencies": {
-    "@skillerr/protocol": "^1.0.1",
+    "@skillerr/protocol": "^1.0.2",
     "mermaid": "^11.4.0",
-    "skillerr": "^1.0.1",
+    "skillerr": "^1.0.2",
     "vitepress": "^1.6.3",
     "vitepress-plugin-mermaid": "^2.0.17"
   },
