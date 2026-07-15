@@ -1,6 +1,6 @@
 # Roadmap
 
-Status: protocol **1.0.0 (Stable)**; the `@skillerr/*` reference packages implement it at the same version. Future protocol changes go through the open RFC process, not silent revisions. The goal remains an open, interoperable contract — multiple conforming hosts and runtimes, not a single CLI.
+Status: protocol **{{ $protocolVersion }} (Stable)**; the `@skillerr/*` reference packages are at **{{ $packageVersion }}**. Future protocol changes go through the open RFC process, not silent revisions. The goal remains an open, interoperable contract — multiple conforming hosts and runtimes, not a single CLI.
 
 Public, contribution-oriented items only. Timing is not guaranteed. Site: [skillerr.com](https://www.skillerr.com/docs/).
 
@@ -47,7 +47,7 @@ Public, contribution-oriented items only. Timing is not guaranteed. Site: [skill
 - Stronger `verify` assertion language + fixtures  
 - Host adapters: local OpenAI-compatible, Cursor, Claude Code, Codex  
 - Second language runtime (Go or Rust) — ecosystem growth, not a
-  stability prerequisite: the protocol is versioned 1.0 (Stable) against
+  stability prerequisite: the protocol is versioned {{ $protocolVersion }} (Stable) against
   this reference implementation's own corpus already  
 - Official `SKILL.md` round-trip adapter tests  
 

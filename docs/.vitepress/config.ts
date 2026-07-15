@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
 import { withMermaid } from "vitepress-plugin-mermaid";
+import { packageVersion, protocolVersion } from "./version.js";
 
 export default withMermaid(
   defineConfig({
@@ -44,7 +45,11 @@ export default withMermaid(
     ],
     themeConfig: {
       logo: { src: "/assets/skillerr-mark-32.png", width: 28, height: 28 },
-      siteTitle: ".skill",
+      siteTitle: "Skillerr",
+      // Read by theme/index.ts and exposed as $protocolVersion/$packageVersion
+      // globals so markdown pages can write `{{ $protocolVersion }}` instead of
+      // a hand-typed number — see version.ts for where these actually come from.
+      versions: { protocol: protocolVersion, package: packageVersion },
       nav: [
         { text: "Docs", link: "/getting-started" },
         { text: "Protocol", link: "/protocol" },
@@ -98,7 +103,7 @@ export default withMermaid(
         { icon: "github", link: "https://github.com/dot-skill/skillerr" },
       ],
       footer: {
-        message: "Open .skill Protocol — Draft 0.5.0",
+        message: `Open .skill Protocol — ${protocolVersion} (Stable)`,
         copyright: "MIT © Open .skill Protocol contributors",
       },
       search: { provider: "local" },
