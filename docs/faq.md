@@ -2,7 +2,7 @@
 
 ## What is "Skillerr"?
 
-"Skillerr" names the reference CLI package (`npm i -g skillerr`), not the project. The project is the **Open `.skill` Protocol** — an open specification and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Full breakdown of every name involved (protocol, format, npm scope, CLI, wire identifiers): [Naming](https://github.com/dot-skill/skillerr/blob/main/docs/NAMING.md). Site: [skillerr.com](https://www.skillerr.com/docs/).
+"Skillerr" names the reference CLI package (`npm i -g skillerr`), not the project. The project is the **Open `.skill` Protocol** — an open specification and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Full breakdown of every name involved (protocol, format, npm scope, CLI, wire identifiers): [Naming](https://github.com/dot-skill/skillerr/wiki/Naming). Site: [skillerr.com](https://www.skillerr.com/docs/).
 
 ## What is the Open `.skill` Protocol?
 
@@ -63,7 +63,7 @@ No. Optional ledger anchors may appear later as one permanence kind — never re
 
 Yes, for real use today — digests, validation, inspect-before-run, and the runtime capability gate are all real, tested code. The protocol spec is versioned {{ $protocolVersion }} (Stable) — future changes go through the open RFC process, not silent revisions.
 
-For production trust, configure a real Ed25519 issuer key (`skill keygen` + `--signer-key`) so mints earn `verified_issuer` trust — the bundled zero-setup key is for trying the CLI, not for shipping. A configured key alone isn't enough, though: `verified_issuer` also requires real agent-runtime evidence (a session id or runtime markers), or the mint fails loudly with a clear error rather than silently downgrading. See the OSS repo's [Key ceremony](https://github.com/dot-skill/skillerr/blob/main/docs/KEY-CEREMONY.md) for the full generate → mint → pin walkthrough, and [What is verifiable](https://github.com/dot-skill/skillerr/blob/main/docs/WHAT-IS-VERIFIABLE.md) for exactly what a signature proves either way.
+For production trust, configure a real Ed25519 issuer key (`skill keygen` + `--signer-key`) so mints earn `verified_issuer` trust — the bundled zero-setup key is for trying the CLI, not for shipping. A configured key alone isn't enough, though: `verified_issuer` also requires real agent-runtime evidence (a session id or runtime markers), or the mint fails loudly with a clear error rather than silently downgrading. See the OSS repo's [Key ceremony](https://github.com/dot-skill/skillerr/wiki/Key-Ceremony) for the full generate → mint → pin walkthrough, and [What is verifiable](https://github.com/dot-skill/skillerr/blob/main/docs/WHAT-IS-VERIFIABLE.md) for exactly what a signature proves either way.
 
 ## Do local / offline agents work?
 
