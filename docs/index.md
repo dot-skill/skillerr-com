@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: Open .skill Protocol
-  text: The trust layer for Agent Skills.
-  tagline: Seal, verify, and prove provenance for the skills your agents run. .skill doesn't replace your SKILL.md, it wraps it in a typed contract, an integrity seal, and provenance, so the same skill keeps working everywhere Agent Skills are supported, and gains inspect-before-run trust on top.
+  text: The cryptographic trust standard for AI skills.
+  tagline: Package a skill once as a sealed .skill, content-addressed, cryptographically signed, and independently verifiable before anyone runs it. Create, inspect, sign, and run portable .skill packages for AI agents, the integrity and provenance layer on top of your SKILL.md.
   actions:
     - theme: brand
       text: Get started
@@ -105,15 +105,39 @@ Summarize trust warnings. Do not execute for real unless I ask.
 
 More starters: [Getting started](/getting-started) · [Convert a SKILL.md](/convert-a-skill-md) · [Evaluate & score](/evaluate-and-score) · [Agents](/agents) · [Workflows](/workflows) · [Full CLI reference](/cli)
 
+## Cryptographic foundation
+
+A skill is only as trustworthy as your ability to verify it. `.skill` gives every skill a verifiable identity, provable authorship, and independently checkable provenance, the same guarantees the software supply chain now expects, applied to AI skills.
+
+| Pillar | What it gives you |
+|---|---|
+| **Identity** | Content-addressed `skill_id` and SHA-256 `package_digest`/`manifest_digest`. Change one byte after sealing and the identity changes. |
+| **Authorship** | A configured Ed25519 issuer key (`verified_issuer`), or an OIDC identity bound with Sigstore Fulcio keyless signing, both using the standard DSSE attestation envelope. |
+| **Provenance** | The sealed digest anchored to the public Sigstore Rekor transparency log, verified offline against the log's signed tree head by default, with a `search.sigstore.dev` link so anyone can check independently. |
+| **Assurance** | `--claims` splits every field into `verified` (crypto-checked) and `self_reported` (asserted), two separate arrays, never blurred together. |
+
+**No telemetry, no tracking.** skillerr makes no network calls unless you explicitly opt in (`--transparency`, `--keyless`, `--online`).
+
 ## The trust ladder
 
-Trust is explicit and layered — you choose how much you need, and verifiers can always tell which rung a package sits on:
+Trust is explicit and layered, you choose how much you need, and verifiers can always tell which rung a package sits on:
 
-1. **Development** — sealed for local iteration. Clearly labeled, never mistaken for production trust.
-2. **Verified issuer** — signed with your Ed25519 key; verifiers who pin your key get cryptographic proof of authorship and integrity.
-3. **Publicly anchored** — the sealed digest is logged to a public transparency log ([sigstore](https://www.sigstore.dev)'s Rekor/Fulcio), independently verifiable by anyone without trusting the tool.
+1. **Development.** Sealed for local iteration with the public dev HMAC key. Clearly labeled, never mistaken for production trust.
+2. **Verified issuer.** Signed with your configured Ed25519 key (`skill keygen` + `--signer-key`); verifiers who pin your key get cryptographic proof of authorship and integrity.
+3. **Publicly anchored.** The sealed digest is logged to a public transparency log ([sigstore](https://www.sigstore.dev)'s Rekor via `--transparency`, and/or Fulcio keyless OIDC via `--keyless`), independently verifiable by anyone without trusting the tool.
 
-A seal proves who issued a package and that it hasn't changed — never that the skill is correct or safe. See [What is verifiable](/trust-and-security).
+Anchoring is orthogonal to trust state and always additive, an anchored package can still be development or self-reported trust. **Inclusion is not endorsement:** logging a package proves auditability, not goodness. A seal proves who issued a package and that it hasn't changed, never that the skill is correct or safe. See [Trust & security](/trust-and-security).
+
+## Built to be verified today, and owned tomorrow
+
+The primitives that make a `.skill` verifiable are, by design, a foundation a future ownership layer could build on: on-chain provenance, programmable royalties for skill authors, decentralized skill marketplaces. This is deliberate architecture, not a promise of features.
+
+- **Content-addressed identity** already gives every skill a unique, tamper-evident id, the same reference primitive on-chain assets use to point at off-chain content.
+- **Cryptographic authorship** is already key-based (Ed25519, optionally Fulcio-bound OIDC identity), the same shape as wallet-based identity.
+- **Pluggable anchors:** the permanence-anchor slot is an open extension point. The wire format already reserves a `ledger` anchor kind alongside the shipped ones; no ledger-anchoring implementation exists yet, it's a tracked [roadmap item](/roadmap), addable without breaking existing packages.
+- **A neutral core:** the spec has no marketplace, no token, and no commerce code, so any ownership layer could build on the verifiable foundation without the standard picking winners.
+
+**What this is not, today:** skillerr does not mint tokens, issue NFTs, or move value. "Minting" a `.skill` creates a cryptographic attestation, not a financial instrument. On-chain ownership is a roadmap extension point, not a shipped feature, and it will always be optional, never required to author, verify, or run a skill. Nothing here is investment advice or a claim of future value.
 
 ## What's in a `.skill`
 
