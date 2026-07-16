@@ -61,7 +61,7 @@ Share the `.skill` file directly. Optional local transparency log: `skill regist
 
 ## Do I need a blockchain?
 
-No. Optional ledger anchors may appear later as one permanence kind — never required.
+No. skillerr does not mint tokens, issue NFTs, or move value, and none of that is required to author, verify, or run a skill today. A ledger anchor is a documented, unimplemented roadmap item, one optional `PermanenceAnchor` kind among several, never required. See [Trust and security](/trust-and-security) for the full extensibility story.
 
 ## Is this ready to use?
 

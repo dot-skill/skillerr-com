@@ -28,6 +28,20 @@ skill run ./file.skill                    # dry-run default
 
 Trust profiles (protocol): `open` | `minted` | `anchored` | `issuer:<id>`.
 
+## The trust ladder (mint-time provenance)
+
+TrustView states above answer "does the runtime's execute gate trust this signature." A separate, complementary axis is how much publicly-checkable provenance a package carries at mint time:
+
+| Rung | How it's sealed | What a verifier gets |
+|---|---|---|
+| **Development** | Public dev HMAC key (default, zero setup) | Local iteration only. Forgeable by design, labeled `development` everywhere it appears, never production trust. |
+| **Verified issuer** | Configured Ed25519 key (`skill keygen` + `--signer-key`) | Cryptographic proof of authorship and integrity, once a verifier pins your key in their trust store. |
+| **Publicly anchored** | Rekor transparency log (`--transparency`) and/or Fulcio keyless OIDC (`--keyless`) | A public, independently-checkable record, anyone can confirm the entry on Sigstore's own infrastructure. |
+
+Anchoring is orthogonal to TrustView state and always additive, an anchored package can still be `development` or `self_reported` trust; the anchor never replaces the seal. **Inclusion is not endorsement:** logging a package proves auditability, not goodness.
+
+The `PermanenceAnchor` slot this ladder's third rung uses is an open extension point: the wire format already reserves a `ledger` anchor kind alongside the shipped ones, a documented, unimplemented [roadmap item](/roadmap), never required, always additive if it ships. skillerr does not mint tokens, issue NFTs, or move value; "minting" a `.skill` creates a cryptographic attestation, not a financial instrument.
+
 ## Seals and digests
 
 - Digests: `sha256:<hex>`
