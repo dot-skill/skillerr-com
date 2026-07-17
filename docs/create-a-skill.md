@@ -62,8 +62,9 @@ Local working tree (git-like):
 | stash / WIP | `skill checkpoint` |
 | commit | `skill compile` |
 | tag / sign | `skill mint` |
+| publish provenance | `skill publish` |
 
-No marketplace publish in the happy path — share the `.skill` file.
+No **marketplace** publish in the happy path, share the `.skill` file directly. `skill publish` is different: it anchors the digest to a public transparency log and prints an independently-verifiable `search.sigstore.dev` URL (auto-keys, no login), not a hosted registry. See [CLI](/cli#skill-publish).
 
 Prefer verbatim human-approved bodies. Secrets only as `{{refs}}`. If incomplete → `compile_refused` with missing fields. Fix and compile again. Do not invent filler.
 

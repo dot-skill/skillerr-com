@@ -126,6 +126,8 @@ Trust is explicit and layered, you choose how much you need, and verifiers can a
 2. **Verified issuer.** Signed with your configured Ed25519 key (`skill keygen` + `--signer-key`); verifiers who pin your key get cryptographic proof of authorship and integrity.
 3. **Publicly anchored.** The sealed digest is logged to a public transparency log ([sigstore](https://www.sigstore.dev)'s Rekor via `--transparency`, and/or Fulcio keyless OIDC via `--keyless`), independently verifiable by anyone without trusting the tool.
 
+`skill publish <file.skill>` makes rung 3 zero-setup: it seals a release and prints a public `search.sigstore.dev` URL. The public log needs a signing key but no login, so a per-user key is auto-generated on first run.
+
 Anchoring is orthogonal to trust state and always additive, an anchored package can still be development or self-reported trust. **Inclusion is not endorsement:** logging a package proves auditability, not goodness. A seal proves who issued a package and that it hasn't changed, never that the skill is correct or safe. See [Trust & security](/trust-and-security).
 
 ## Built to be verified today, and owned tomorrow

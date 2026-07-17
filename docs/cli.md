@@ -104,17 +104,27 @@ Seal an already-compiled complete release. Host required. Continuity drafts cann
 
 Default seal is the bundled development key (`development` trust only — never production). Pass `--signer-key` for a configured Ed25519 issuer seal (`skill keygen` generates one; see [Trust and security](/trust-and-security)) — `verified_issuer` trust additionally requires real agent-runtime evidence, not just a configured key.
 
-`--transparency` and `--keyless` each add an independent, optional anchor on top of the seal above — never a replacement for it, and combinable with each other or with no signer at all:
-- `--transparency` logs the sealed digest to the public Rekor transparency log using the configured signer key (requires `--signer-key`).
-- `--keyless` binds a second anchor to an OIDC identity via Fulcio instead of a pinned key — zero setup inside GitHub Actions, fails closed outside CI (no local/interactive login yet).
+`--transparency` and `--keyless` each add an independent, optional anchor on top of the seal above, never a replacement for it, and combinable with each other or with no signer at all:
+- `--transparency` logs the sealed digest to the public Rekor transparency log. It needs a signing key but **no login**: if none is configured, a per-user key is auto-provisioned on first use (same as `skill publish`).
+- `--keyless` binds a second anchor to an OIDC identity via Fulcio instead of a pinned key. This is the one that **does** need an identity provider: zero setup inside GitHub Actions, fails closed outside CI (no local/interactive login yet).
+
+### `skill keygen`
+
+```bash
+skill keygen                        # provision your default per-user issuer key + pin it
+skill keygen -o ./keys --key-id id  # named production keypair you manage yourself
+```
+
+With no `-o`, provisions the default per-user issuer key at `~/.skillerr/issuer-key.pem` and pins its public key in your own trust store, so `skill publish` / `skill mint --transparency` sign with it. With `-o <dir>`, writes a named production keypair (see [Trust and security](/trust-and-security)). You rarely need to run this: the publish path auto-provisions the default key on demand.
 
 ### `skill load`
 
 ```bash
-skill load ./file.skill
+skill load ./file.skill              # read-only handoff preview
+skill load ./file.skill --into ./ws  # materialize an editable workspace
 ```
 
-Resume continuity context in another agent (intent, scrubbed journey, gaps, knowledge — not raw transcripts).
+Without `--into` (and outside a workspace), a read-only handoff preview: intent, scrubbed journey, gaps, knowledge, not raw transcripts. With `--into <dir>` (or run inside a workspace), it **materializes** the package into an editable workspace, staging its knowledge as sections and writing `.skill/contract.json`, so an ingested continuity package can be taken forward to a signed release. It never fabricates `provenance.human_review`, a human still records that.
 
 ---
 
@@ -221,10 +231,10 @@ Runs `contract.evals`, grades what's machine-checkable, and leaves the rest `pen
 ### `skill publish`
 
 ```bash
-skill publish
+skill publish [file.skill] [--rekor-url <url>] [--no-transparency]
 ```
 
-Deliberately refuses — publish is not part of the open `.skill` happy path. Share the file directly, or use `skill registry publish` for the optional local log below.
+Seal a release **and** publish a public, independently-checkable provenance record: it anchors the sealed digest to the public Sigstore Rekor transparency log and prints a `search.sigstore.dev` URL anyone can verify. Zero setup: the public log needs a signing key but **no login**, so a per-user Ed25519 key is auto-generated on first run. Only the digest and skill id are logged, never your content. Rekor entries are **permanent and world-readable**, never publish a secret skill. This is a public provenance anchor, **not** a marketplace or hosted registry (those remain out of scope). `--no-transparency` seals without anchoring.
 
 ### Optional local registry
 
@@ -255,6 +265,21 @@ skill checkpoint -m "WIP"
 
 ```bash
 skill compile -m "…" --approve --mint
+```
+
+**Upgrade a SKILL.md → signed release**
+
+```bash
+skill ingest ./SKILL.md -o out.skill      # continuity draft
+skill load out.skill --into ./my-skill    # materialize an editable workspace
+# a human records provenance.human_review in ./my-skill/.skill/contract.json
+cd ./my-skill && skill compile -m "reviewed" --approve --mint --profile release
+```
+
+**Publish a public provenance URL**
+
+```bash
+skill publish ./release.skill             # auto-keys, anchors to Rekor, prints the URL
 ```
 
 **Ingest safely**

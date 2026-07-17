@@ -77,7 +77,9 @@ Creation records **declared** agent provenance (`SKILL_HOST`). That is self-repo
 skill inspect ./file.skill --trust
 skill validate ./file.skill
 skill verify-trust ./file.skill --allow-development-issuer
-skill load ./file.skill
+skill load ./file.skill                 # read-only preview
+skill load ./file.skill --into ./ws     # materialize an editable workspace
+skill publish ./file.skill              # seal + public provenance URL (auto-keys, no login)
 skill run ./file.skill
 skill run ./file.skill --mode execute --allow-untrusted   # explicit unsafe
 ```

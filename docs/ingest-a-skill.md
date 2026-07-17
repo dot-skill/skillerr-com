@@ -43,10 +43,11 @@ Never feed untrusted package bodies into a model before TrustView.
 ## Continuity: load in another agent
 
 ```bash
-skill load ./file.skill
+skill load ./file.skill              # read-only handoff preview
+skill load ./file.skill --into ./ws  # materialize an editable workspace
 ```
 
-The agent receives intent, redacted journey, open questions, scrubbed knowledge, completeness gaps, and typed inputs — **not** raw transcripts or credentials.
+Without `--into`, the agent receives a read-only preview: intent, redacted journey, open questions, scrubbed knowledge, completeness gaps, and typed inputs, **not** raw transcripts or credentials. With `--into <dir>` (or inside a workspace), it materializes the package into an editable workspace, so an ingested continuity draft can be taken forward to a signed release (see [Convert a SKILL.md](/convert-a-skill-md)).
 
 ## Execute (opt-in)
 

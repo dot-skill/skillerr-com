@@ -72,10 +72,12 @@ Commands are what the **agent** runs — not a human homework list.
 | Goal | What the agent runs |
 |------|---------------------|
 | Create workspace | `skill init` → `journey` → `propose` → `status` |
+| Upgrade a SKILL.md | `skill ingest <path>` → `skill load <file> --into <dir>` → release |
 | Mid-work handoff | `skill checkpoint` |
 | Release when complete | `skill compile -m "…" --approve --mint` |
+| Public provenance URL | `skill publish <file.skill>` (auto-keys, no login) |
 | Trust before run | `skill inspect --trust` → `validate` → `run` (dry-run) |
-| Resume handoff | `skill load ./file.skill` |
+| Resume handoff (read-only) | `skill load ./file.skill` |
 
 Creating requires a declared agent host:
 

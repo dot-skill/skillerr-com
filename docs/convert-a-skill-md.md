@@ -42,13 +42,30 @@ hasn't reviewed it yet — ingest can't fabricate that).
 
 ## Finish the release path
 
-Once a human has actually reviewed the ingested contract:
+`skill ingest` writes a sealed **continuity** `out.skill`, not a workspace.
+To seal a signed release, materialize it into an editable workspace, record
+the human review it's missing, then compile:
 
 ```bash
-skill contract-check .skill/contract.json --profile release
-skill compile -m "reviewed" --approve --profile release
-skill mint --host cursor
+# 1. Materialize the ingested package into an editable workspace.
+skill load ./out.skill --into ./my-skill
+
+# 2. A human reviews the mapped contract and records it, by editing
+#    ./my-skill/.skill/contract.json so provenance.human_review becomes:
+#      { "status": "reviewed", "actor": "<you>",
+#        "at": "<ISO timestamp>", "scope": ["contract", "knowledge"] }
+#    No CLI flag can set this, that's the point.
+
+# 3. Compile the signed release from the workspace.
+cd ./my-skill
+skill compile -m "reviewed" --approve --mint --profile release
 ```
+
+`skill compile --profile release` **refuses** (`compile_refused`) until the
+review is recorded; it never fabricates completeness. The default seal is
+the zero-setup public-dev key (`development` trust); add `--signer-key` for
+a configured Ed25519 `verified_issuer` seal (see
+[Key ceremony](https://github.com/dot-skill/skillerr/blob/main/docs/KEY-CEREMONY.md)).
 
 ## Why this is safe by construction
 
