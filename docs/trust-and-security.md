@@ -40,6 +40,8 @@ TrustView states above answer "does the runtime's execute gate trust this signat
 
 Anchoring is orthogonal to TrustView state and always additive, an anchored package can still be `development` or `self_reported` trust; the anchor never replaces the seal. **Inclusion is not endorsement:** logging a package proves auditability, not goodness.
 
+`skill publish` makes the publicly-anchored rung frictionless: the public Rekor log needs a signing key but no login, so a per-user key is auto-provisioned on first use. That key alone is not `verified_issuer`, without real agent-runtime evidence the seal binds `self_reported`, and third parties earn `verified_issuer` for your packages only once they pin your key. The public URL works either way; it never inflates what the seal claims.
+
 The `PermanenceAnchor` slot this ladder's third rung uses is an open extension point: the wire format already reserves a `ledger` anchor kind alongside the shipped ones, a documented, unimplemented [roadmap item](/roadmap), never required, always additive if it ships. skillerr does not mint tokens, issue NFTs, or move value; "minting" a `.skill` creates a cryptographic attestation, not a financial instrument.
 
 ## Seals and digests

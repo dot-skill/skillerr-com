@@ -59,6 +59,10 @@ Ask your agent to inspect first, then validate, then dry-run. See [Ingest a skil
 
 Share the `.skill` file directly. Optional local transparency log: `skill registry …`. Hosted registries are out of scope for the protocol.
 
+## How do I get a public, verifiable provenance URL?
+
+Run `skill publish <file.skill>`. It seals a release and anchors the digest to the public [Sigstore](https://www.sigstore.dev) Rekor transparency log, then prints an independently-checkable `search.sigstore.dev` URL. Zero setup: the public log needs a signing key but **no login/account/OIDC**, so a per-user key is auto-generated on first run and reused after. Only the digest and skill id are logged, never your content. Rekor entries are **permanent and world-readable**, so never publish a secret skill. This is a public provenance record, not a marketplace. See [Trust and security](/trust-and-security).
+
 ## Do I need a blockchain?
 
 No. skillerr does not mint tokens, issue NFTs, or move value, and none of that is required to author, verify, or run a skill today. A ledger anchor is a documented, unimplemented roadmap item, one optional `PermanenceAnchor` kind among several, never required. See [Trust and security](/trust-and-security) for the full extensibility story.

@@ -54,7 +54,8 @@ Keywords follow RFC 2119.
 | **extract / segment** | Identify candidates → incomplete contract scaffolds + missing reports |
 | **compile** | Source → `.skill` package (continuity or release) |
 | **mint** | Seal a complete release with creation attestation |
-| **load** | Resume continuity context in another agent or host |
+| **publish** | Seal a release + anchor to a public transparency log; prints an independently-verifiable URL (auto-provisions a key, no login) |
+| **load** | Read a `.skill`; `--into <dir>` (or inside a workspace) materializes an editable workspace, otherwise a read-only handoff preview |
 | **TrustView** | Seal / issuer / digest trust state without executing the skill |
 
 ## Required components (release)
