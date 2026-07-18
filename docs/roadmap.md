@@ -19,9 +19,10 @@ Public, contribution-oriented items only. Timing is not guaranteed. Site: [skill
   not just the bundled development-only key  
 - Adversarial package corpus (zip bombs, path tricks, hash mismatch, and
   more) — runs on every push in CI, not just described here  
-- Public [RFCs](https://github.com/dot-skill/skillerr/wiki/RFCs) — six RFCs; asymmetric signing has since
-  shipped as real code, the rest remain spec-only proposals open for
-  discussion  
+- Public [RFCs](https://github.com/dot-skill/skillerr/blob/main/docs/rfcs/) — eight RFCs; asymmetric signing,
+  subject-bearing transparency anchors, and Agent Skills ecosystem
+  compatibility have since shipped as real code, the rest remain
+  spec-only proposals open for discussion  
 - Optional public transparency-log anchoring (`skill mint --transparency`),
   built on the official sigstore/Rekor client libraries — see
   [Trust and security](/trust-and-security)  
