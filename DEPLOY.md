@@ -1,5 +1,7 @@
 # Deploy skillerr.com
 
+`main` only receives merges from `release/*` or `hotfix/*` branches (see CONTRIBUTING.md's Branch flow section); day-to-day work happens on `develop`. Whatever lands on `main` deploys automatically, same as before, just from a more deliberate source now.
+
 This site deploys to **two places** from the same `main` branch, independently:
 
 1. **www.skillerr.com** (Vercel, production) — the real domain, docs served under `/docs/`
