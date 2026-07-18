@@ -8,13 +8,13 @@ npm i -g skillerr
 
 Node ≥ 20. Site: [skillerr.com](https://www.skillerr.com/docs/).
 
-Implementers wiring a product: start from [Protocol](/protocol) and the `@skillerr/*` libraries — the CLI is the reference surface, not the only path.
+Implementers wiring a product: start from [Protocol](/protocol) and the `@skillerr/*` libraries, the CLI is the reference surface, not the only path.
 
 ---
 
 ## Talk to your AI
 
-The prompt below is copy-paste for your coding agent's chat — it installs the CLI if needed, then packages this conversation into a `.skill` file: a sealed, typed package (not a chat export) that any conforming host can later inspect, hand off, or run. "Journey" means the redacted record of what you and the agent did; "checkpoint" means a partial, in-progress save; "release-complete" means every required field is filled in, not just "looks done."
+The prompt below is copy-paste for your coding agent's chat: it installs the CLI if needed, then packages this conversation into a `.skill` file, a sealed, typed package (not a chat export) that any conforming host can later inspect, hand off, or run. "Journey" means the redacted record of what you and the agent did; "checkpoint" means a partial, in-progress save; "release-complete" means every required field is filled in, not just "looks done."
 
 ### Create a skill from this chat
 
@@ -22,7 +22,7 @@ The prompt below is copy-paste for your coding agent's chat — it installs the 
 Run these exact commands in your terminal, in order:
 
 1. npm i -g skillerr          (skip if `skill --version` already works)
-2. export SKILL_HOST=cursor   (replace "cursor" with your actual tool name —
+2. export SKILL_HOST=cursor   (replace "cursor" with your actual tool name:
                                 claude-code, codex, ollama, etc.)
 
 Then, from this conversation, create a portable .skill: redacted journey, exact
@@ -44,7 +44,7 @@ Do not execute for real unless I explicitly ask.
 ```text
 Using skillerr, run agent-guide then extract from ./journey.json into ./extraction.
 For each candidate I select, open its own workspace, fill missing contract fields,
-and only compile a release when complete — otherwise checkpoint. Prefer exact text.
+and only compile a release when complete; otherwise checkpoint. Prefer exact text.
 ```
 
 ### Load a continuity handoff
@@ -67,7 +67,7 @@ Full create path: [Create a skill](/create-a-skill) · Have a SKILL.md already: 
 
 ## What your agent will do
 
-Commands are what the **agent** runs — not a human homework list.
+Commands are what the **agent** runs, not a human homework list.
 
 | Goal | What the agent runs |
 |------|---------------------|

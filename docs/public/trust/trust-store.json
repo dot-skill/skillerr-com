@@ -6,7 +6,7 @@
       "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAp/Ad+D1IDGre0oB/UhaRrvpomPKYOLS1qsfzjmPB8VI=\n-----END PUBLIC KEY-----\n",
       "algorithm": "ed25519",
       "allowed_hosts": ["example-agent"],
-      "comment": "Signs dot-skill/skillerr-com's release-profile reference fixture (contract-foundation.skill) only. Not a production issuer key for real-world skills — see docs/KEY-CEREMONY.md in dot-skill/skillerr for what that actually requires."
+      "comment": "Signs dot-skill/skillerr-com's release-profile reference fixture (contract-foundation.skill) only. Not a production issuer key for real-world skills, see docs/KEY-CEREMONY.md in dot-skill/skillerr for what that actually requires."
     }
   ]
 }

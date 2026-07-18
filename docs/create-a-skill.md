@@ -1,8 +1,8 @@
 # Create a skill
 
-Under the Open `.skill` Protocol, **agents author** portable skills; **humans review and approve** release. Point your AI at the work — do not treat the CLI as a human click-ops checklist.
+Under the Open `.skill` Protocol, **agents author** portable skills; **humans review and approve** release. Point your AI at the work; do not treat the CLI as a human click-ops checklist.
 
-Want the full interview-driven walkthrough instead of a single prompt —
+Want the full interview-driven walkthrough instead of a single prompt,
 every field explained, in order, with the reasoning behind it? Point your
 agent at [`examples/skillerr-authoring/SKILL.md`](https://github.com/dot-skill/skillerr/blob/main/examples/skillerr-authoring/SKILL.md)
 in the `skillerr` repo. It takes an agent from a plain conversation to a
@@ -77,7 +77,7 @@ Prompt:
 ```text
 Using skillerr, run agent-guide then extract from ./journey.json into ./extraction.
 For each candidate I select, open its own workspace, fill missing contract fields,
-and only compile a release when complete — otherwise checkpoint.
+and only compile a release when complete; otherwise checkpoint.
 ```
 
 What the agent runs: `skill agent-guide` → `skill extract ./journey.json -o ./extraction` → one workspace per selected candidate → contract-check → checkpoint or compile.

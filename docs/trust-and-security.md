@@ -4,11 +4,11 @@ A conforming host **SHOULD** expose **TrustView** (digests, seals, issuer class)
 
 ## Practice
 
-1. **Inspect before run** — digests and seals without executing the skill or feeding package bodies to a model.  
+1. **Inspect before run**: digests and seals without executing the skill or feeding package bodies to a model.  
 2. **Validate** structure and hash integrity.  
 3. **Dry-run** before execute.  
 4. Treat **unsigned / open** packages as **untrusted**.  
-5. Treat the reference **public-dev HMAC** mint as **development-only** — never production identity proof.
+5. Treat the reference **public-dev HMAC** mint as **development-only**, never production identity proof.
 
 ```bash
 skill inspect ./file.skill --trust
@@ -48,7 +48,7 @@ The `PermanenceAnchor` slot this ladder's third rung uses is an open extension p
 
 - Digests: `sha256:<hex>`
 - `package_digest` covers package content (excludes `skill.json` and `signatures/**`)
-- **`sealed_manifest_digest`** binds title, intent, permissions, policy, capabilities, input sensitivity, content digests, and contract summary — not only workflow / knowledge bytes
+- **`sealed_manifest_digest`** binds title, intent, permissions, policy, capabilities, input sensitivity, content digests, and contract summary, not only workflow / knowledge bytes
 - Creation attestation records agent host / provider / model, `host_claim_binding` (`self_reported` | `verified_issuer`), and `issuer_class` (`public_dev_hmac` | `configured_hmac` | `verified_issuer`)
 
 Inspect without side effects:
@@ -80,7 +80,7 @@ Never embed API keys, tokens, `.env`, or private customer data in sections or jo
 
 ## Residual risk (honest)
 
-A seal proves which key signed which claims. It **cannot** prove that a named **local LLM** was honest about authorship. Treat host / provider / model fields as claims under that key’s honesty — especially offline and self-hosted models.
+A seal proves which key signed which claims. It **cannot** prove that a named **local LLM** was honest about authorship. Treat host / provider / model fields as claims under that key’s honesty, especially offline and self-hosted models.
 
 The bundled development HMAC signer (`issuer_class=public_dev_hmac`) is **never** production trust.
 
