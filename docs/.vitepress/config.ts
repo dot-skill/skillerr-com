@@ -42,6 +42,17 @@ export default withMermaid(
       ["meta", { property: "og:image", content: "https://www.skillerr.com/docs/assets/og-banner.png" }],
       ["meta", { name: "twitter:card", content: "summary_large_image" }],
       ["meta", { name: "twitter:image", content: "https://www.skillerr.com/docs/assets/og-banner.png" }],
+      // Site-wide page-view analytics (Google Analytics). This is the
+      // skillerr.com docs/marketing site only, separate from the CLI,
+      // which makes no network calls unless explicitly opted into
+      // (--transparency/--keyless/--online). See docs/verify.md's Privacy
+      // section for the disclosure.
+      ["script", { async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-MMJCDCPZ36" }],
+      [
+        "script",
+        {},
+        "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-MMJCDCPZ36');",
+      ],
     ],
     themeConfig: {
       logo: { src: "/assets/skillerr-mark-32.png", width: 28, height: 28 },

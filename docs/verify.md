@@ -24,6 +24,8 @@ The CLI surfaces the same link: `skill mint --transparency` prints it when the a
 
 ## Privacy {#privacy}
 
+This site uses Google Analytics for aggregate page-view stats, standard web analytics, separate from the skillerr CLI itself, which makes no network calls unless you explicitly opt in (`--transparency`, `--keyless`, `--online`).
+
 This tool sends the uploaded file to our server for verification — it does not verify fully client-side in your browser. That's a deliberate tradeoff, not an oversight: correct signature and Merkle-inclusion-proof verification is security-critical code, and reusing the same tested `@skillerr/core` library the CLI runs on is more reliable than re-implementing it fresh in browser JavaScript under time pressure.
 
 What that means in practice:
