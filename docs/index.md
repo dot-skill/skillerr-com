@@ -19,19 +19,19 @@ hero:
 features:
   - icon: 📐
     title: Typed contract, not freeform prose
-    details: Every skill declares its intent, triggers, inputs and outputs, ordered steps, required permissions, and verification checks — so the same package means the same thing to every agent and host.
+    details: Every skill declares its intent, triggers, inputs and outputs, ordered steps, required permissions, and verification checks, so the same package means the same thing to every agent and host.
   - icon: 🔒
     title: Content integrity built in
     details: A content-addressed skill_id and SHA-256 package and manifest digests make any change after packaging detectable. A license/terms slot travels with the package too.
   - icon: 🔍
     title: Inspect before you run
-    details: See the seal, issuer, and digests — and a clean split of cryptographically verified vs. self-reported claims — without executing anything.
+    details: See the seal, issuer, and digests, plus a clean split of cryptographically verified vs. self-reported claims, without executing anything.
   - icon: 🪜
     title: A real trust ladder
     details: Seal with a development key for local work, a configured Ed25519 issuer key for verifiable authorship, or anchor the digest in a public transparency log that anyone can check independently.
   - icon: 🔀
     title: Continuity and release, as first-class modes
-    details: Hand off work-in-progress between agents as a continuity package; cut a release only when the contract is complete and a human has reviewed it — release compiles refuse anything less.
+    details: Hand off work-in-progress between agents as a continuity package; cut a release only when the contract is complete and a human has reviewed it. Release compiles refuse anything less.
   - icon: 🧾
     title: Provenance you can trust
     details: Agents author; humans review and approve. Declared agent host and model travel with the package, and self-reported claims are never presented as verified.
@@ -40,7 +40,7 @@ features:
     details: One command converts a SKILL.md or skill-creator folder into a sealed, inspectable .skill package.
   - icon: 🌐
     title: Open protocol, portable format
-    details: The .skill container is defined by the spec, not the tool — skillerr and the @skillerr/* reference libraries are one implementation, and independent implementations are welcome.
+    details: The .skill container is defined by the spec, not the tool. skillerr and the @skillerr/* reference libraries are one implementation, and independent implementations are welcome.
 ---
 
 ## Where skillerr fits
@@ -81,7 +81,7 @@ skill agent-guide        # the exact create / inspect / handoff protocol
 
 <div class="prompt-block">
 
-**Simplest — just ask**
+**Simplest: just ask**
 
 ```text
 npm i -g skillerr

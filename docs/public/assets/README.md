@@ -1,4 +1,4 @@
-# Generated brand assets — do not hand-edit
+# Generated brand assets: do not hand-edit
 
 Every file in this directory except this README (`skillerr-mark-*.png`,
 `skillerr-mark.png`, `favicon.ico`, `apple-touch-icon.png`, `og-banner.png`)
@@ -14,7 +14,7 @@ skillerr/assets/skillerr-mark.svg            (sibling repo: dot-skill/skillerr)
 
 There is **no automated cross-repo pipeline** wiring `skillerr`'s asset
 build into this site yet (`skillerr-com` and `skillerr` are separate git
-repos with no shared CI). That's a known gap, not an oversight — treat
+repos with no shared CI). That's a known gap, not an oversight; treat
 wiring it up as a follow-up contribution (see `skillerr`'s
 [`docs/ROADMAP.md`](https://github.com/dot-skill/skillerr/blob/main/docs/ROADMAP.md)
 "Next" section for the kind of thing that belongs there).
@@ -35,5 +35,5 @@ cp ../skillerr/assets/og-banner.png docs/public/assets/
 ```
 
 `docs/.vitepress/config.ts` references these by filename (favicon links,
-theme logo, `og:image` / `twitter:image` meta tags) — keep filenames stable
+theme logo, `og:image` / `twitter:image` meta tags), keep filenames stable
 across regenerations so that wiring doesn't need to change too.

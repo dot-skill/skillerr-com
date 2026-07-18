@@ -19,10 +19,10 @@ Bin: `skill`. Product hosts may wrap the `@skillerr/core` / `@skillerr/runtime` 
 ## Mandatory rules
 
 1. **Set `SKILL_HOST`** to your real host id (`cursor`, `ollama`, `lmstudio`, `claude`, `codex`, …).  
-   **Never** use denylisted values: `human`, `cli`, `shell`, `manual`, `bash`, `terminal`, … — mint refuses them.
+   **Never** use denylisted values (`human`, `cli`, `shell`, `manual`, `bash`, `terminal`, …); mint refuses them.
 2. Prefer `SKILL_AGENT_INVOCATION=1` or `SKILL_SESSION_ID` from the agent runtime. Env-only host claims stay `self_reported`.
 3. **Never invent filler** to force a release compile. If incomplete, stop and list `missing`.
-4. Prefer **exact** section bodies the human approved — do not paraphrase approved meaning when proposing.
+4. Prefer **exact** section bodies the human approved; do not paraphrase approved meaning when proposing.
 5. Secrets only as `{{refs}}` / env refs.
 6. Use **`skill checkpoint`** for mid-work handoff; **`skill compile --approve --mint`** only when release-complete.
 7. Record tokens when known: `SKILL_INPUT_TOKENS` / `SKILL_OUTPUT_TOKENS` or `--input-tokens`.
@@ -65,11 +65,11 @@ Tell the human what is missing. Complete those parts, then compile again. **Do n
 | Goal | Command | Incomplete OK? |
 |------|---------|----------------|
 | Handoff to another AI / host | `skill checkpoint` | Yes |
-| Ship a reusable skill | `skill compile --approve --mint` | No — refuse |
+| Ship a reusable skill | `skill compile --approve --mint` | No, refuse |
 
 ## Provenance honesty
 
-Creation records **declared** agent provenance (`SKILL_HOST`). That is self-reported context, not cryptographic proof — especially for local LLMs. Humans review and approve release compilation.
+Creation records **declared** agent provenance (`SKILL_HOST`). That is self-reported context, not cryptographic proof, especially for local LLMs. Humans review and approve release compilation.
 
 ## Ingest / run (what you run)
 

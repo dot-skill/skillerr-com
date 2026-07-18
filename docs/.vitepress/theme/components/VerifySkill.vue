@@ -108,7 +108,7 @@ function trustClass(state?: string) {
     <div v-if="loading" class="status">Verifying…</div>
 
     <div v-if="apiUnavailable" class="status error">
-      This feature needs the production site — visit
+      This feature needs the production site: visit
       <a href="https://www.skillerr.com/docs/verify">www.skillerr.com/docs/verify</a> (not available on the
       GitHub Pages mirror, which is static-only).
     </div>
@@ -129,7 +129,7 @@ function trustClass(state?: string) {
         </table>
         <div v-if="result.transparency">
           <p v-if="result.transparency.ok" class="transparency-ok">
-            ✓ Transparency-log anchor verified — logged at index {{ result.transparency.log_index }}.
+            ✓ Transparency-log anchor verified: logged at index {{ result.transparency.log_index }}.
             <a v-if="result.transparency.rekor_url" :href="result.transparency.rekor_url" target="_blank" rel="noopener">
               Check this entry yourself on sigstore's public log →
             </a>
@@ -140,7 +140,7 @@ function trustClass(state?: string) {
         </div>
         <div v-if="result.keyless">
           <p v-if="result.keyless.ok" class="transparency-ok">
-            ✓ Keyless (Fulcio) identity anchor verified — {{ result.keyless.owner_identity }}
+            ✓ Keyless (Fulcio) identity anchor verified: {{ result.keyless.owner_identity }}
             <span v-if="result.keyless.owner_issuer">(via {{ result.keyless.owner_issuer }})</span>.
             <a v-if="result.keyless.rekor_url" :href="result.keyless.rekor_url" target="_blank" rel="noopener">
               Check this entry yourself on sigstore's public log →
@@ -151,15 +151,15 @@ function trustClass(state?: string) {
           </p>
         </div>
         <p v-if="result.anchored === false" class="transparency-none">
-          Not publicly anchored to a transparency log — trust here rests on the signature and trust-store check
+          Not publicly anchored to a transparency log: trust here rests on the signature and trust-store check
           above, not on independent third-party verification.
         </p>
         <p class="docs-link"><a :href="result.docs">What does this trust state actually prove?</a></p>
 
         <div v-if="result.claims" class="claims">
-          <h4>Claims — verified vs. self-reported</h4>
+          <h4>Claims: verified vs. self-reported</h4>
           <p class="claims-note">
-            Every field above is in exactly one of these two lists, never both — nothing here can structurally
+            Every field above is in exactly one of these two lists, never both: nothing here can structurally
             present a self-reported claim as verified.
           </p>
           <div class="claims-column claims-verified">
@@ -167,7 +167,7 @@ function trustClass(state?: string) {
             <ul>
               <li v-for="c in result.claims.verified" :key="c.field">
                 <code>{{ c.field }}</code>: {{ c.value }}
-                <span class="claims-method">— {{ c.method }}</span>
+                <span class="claims-method">· {{ c.method }}</span>
               </li>
             </ul>
           </div>
@@ -176,7 +176,7 @@ function trustClass(state?: string) {
             <ul>
               <li v-for="c in result.claims.self_reported" :key="c.field">
                 <code>{{ c.field }}</code>: {{ c.value }}
-                <span class="claims-method">— {{ c.note }}</span>
+                <span class="claims-method">· {{ c.note }}</span>
               </li>
             </ul>
           </div>
