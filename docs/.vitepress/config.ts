@@ -97,7 +97,7 @@ export default withMermaid(
           items: [
             { text: "FAQ", link: "/faq" },
             { text: "Roadmap", link: "/roadmap" },
-            { text: "Naming", link: "https://github.com/dot-skill/skillerr/wiki/Naming" },
+            { text: "GitHub", link: "https://github.com/dot-skill/skillerr" },
           ],
         },
       ],
