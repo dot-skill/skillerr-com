@@ -1,6 +1,6 @@
 # Ingest a skill
 
-**Ingest** is the protocol path for receiving a portable skill: inspect trust, validate integrity, then load or dry-run. Ask your agent — same order on any conforming host.
+**Ingest** is the protocol path for receiving a portable skill: inspect trust, validate integrity, then load or dry-run. Ask your agent, same order on any conforming host.
 
 ## Prompt your agent
 
@@ -17,7 +17,7 @@ Load ./handoff.skill as continuity context. Summarize intent, scrubbed journey,
 open gaps, and pinned knowledge. Resume the work; do not mint a fake release.
 ```
 
-Needs the CLI installed first — run `skill --version`, and if that fails,
+Needs the CLI installed first: run `skill --version`, and if that fails,
 `npm i -g skillerr`.
 
 ## What your agent will do
@@ -33,7 +33,7 @@ skill run ./file.skill                 # dry-run by default
 
 | Step | What you learn |
 |------|----------------|
-| `inspect --trust` | Manifest, digests, seal, TrustView — no execution |
+| `inspect --trust` | Manifest, digests, seal, TrustView, no execution |
 | `validate` | Structure + hash integrity |
 | `verify-trust` | Seal / issuer checks |
 | `run` (dry-run) | Planned steps without side effects |
@@ -65,12 +65,12 @@ Deny-by-default: undeclared network, filesystem outside declared roots, undeclar
 
 ## Unpack (inspection only)
 
-`skill unpack ./file.skill` — prefer digests from `inspect` / `validate` over eyeballing unpacked files as a trust decision.
+`skill unpack ./file.skill`: prefer digests from `inspect` / `validate` over eyeballing unpacked files as a trust decision.
 
 ## Trust reminders
 
 - **Unsigned = untrusted**
-- Public-dev HMAC = **development**, forgeable — not production identity
+- Public-dev HMAC = **development**, forgeable, not production identity
 - Host / model fields under a seal are still **claims**, especially for local LLMs
 
 Details: [Trust and security](/trust-and-security)

@@ -1,11 +1,11 @@
 # Open `.skill` Protocol
 
 **Reference CLI:** [`skillerr`](https://www.npmjs.com/package/skillerr) · **Site:** [skillerr.com](https://www.skillerr.com/docs/)  
-**Status:** {{ $protocolVersion }} (Stable) — future changes go through the open [RFC process](https://github.com/dot-skill/skillerr/blob/main/docs/rfcs/), not silent revisions  
+**Status:** {{ $protocolVersion }} (Stable). Future changes go through the open [RFC process](https://github.com/dot-skill/skillerr/blob/main/docs/rfcs/), not silent revisions  
 **Extension:** `.skill`  
 **Container:** sealed ZIP
 
-This is an open specification and portable `.skill` format so AI apps and agents can author, inspect, version, and run skills interoperably. The `skillerr` CLI is the reference implementation — not the definition of the protocol.
+This is an open specification and portable `.skill` format so AI apps and agents can author, inspect, version, and run skills interoperably. The `skillerr` CLI is the reference implementation, not the definition of the protocol.
 
 A conforming **host** is any runtime that loads a `.skill` package according to this specification. Independent conforming implementations are welcome.
 
@@ -27,7 +27,7 @@ Keywords follow RFC 2119.
 
 | Need | Protocol answer |
 |------|-----------------|
-| Move a skill between tools | One sealed package with digests — not a transcript dump |
+| Move a skill between tools | One sealed package with digests, not a transcript dump |
 | Author with AI agents | Structured sections + completeness gates; humans approve release |
 | Run safely | Inspect TrustView / digests / seals **before** execute |
 | Hand off mid-work | Continuity profile packages gaps without minting a fake release |
@@ -50,7 +50,7 @@ Keywords follow RFC 2119.
 | **Reference CLI** | `skillerr` |
 | **section** | Atomic authored unit (decision, integration, lesson, …) |
 | **SkillSource** | Structured authoring input before compile |
-| **SkillContract** | Transferable semantic contract (1.0+) — source of truth for release |
+| **SkillContract** | Transferable semantic contract (1.0+), source of truth for release |
 | **extract / segment** | Identify candidates → incomplete contract scaffolds + missing reports |
 | **compile** | Source → `.skill` package (continuity or release) |
 | **mint** | Seal a complete release with creation attestation |
@@ -60,15 +60,15 @@ Keywords follow RFC 2119.
 
 ## Required components (release)
 
-1. **Agent context** — declared host, provider, model, deployment when known  
-2. **SkillContract** — complete 1.0 semantic source of truth  
-3. **Intent and triggers** — purpose and when to apply  
-4. **Typed inputs and outputs** — schemas, optionality, defaults, sensitivity, ask / approval policy  
-5. **Workflow** — ordered steps, branches, decisions, failure / recovery edges  
-6. **Safety boundary** — capabilities, permissions / consent, forbidden actions  
-7. **Verification** — domain assertions and evidence expectations  
-8. **Learning and provenance** — corrections, evidence, limitations, redacted journey  
-9. **Human semantic review** — recorded actor, time, and scope (never inferred from a flag)
+1. **Agent context**: declared host, provider, model, deployment when known  
+2. **SkillContract**: complete 1.0 semantic source of truth  
+3. **Intent and triggers**: purpose and when to apply  
+4. **Typed inputs and outputs**: schemas, optionality, defaults, sensitivity, ask / approval policy  
+5. **Workflow**: ordered steps, branches, decisions, failure / recovery edges  
+6. **Safety boundary**: capabilities, permissions / consent, forbidden actions  
+7. **Verification**: domain assertions and evidence expectations  
+8. **Learning and provenance**: corrections, evidence, limitations, redacted journey  
+9. **Human semantic review**: recorded actor, time, and scope (never inferred from a flag)
 
 Every list declaration is `specified`, explicit `none`, or explicit `not_applicable`. Ambiguous omission refuses release.
 
@@ -104,11 +104,11 @@ example.skill
 | Secrets | Refs only; redacted journey | Same + attestation |
 | Mint | Never | After complete approved compile |
 
-Continuity packages are the handoff object — not raw transcripts or credentials.
+Continuity packages are the handoff object, not raw transcripts or credentials.
 
 ## Agent provenance (protocol fact)
 
-Creation paths require a declared agent host (`SKILL_HOST`, IDE extension, or app wrapping core APIs). Denylisted hosts (`human`, `cli`, `shell`, `manual`, …) cannot mint. Declared host alone is **self_reported** — never `verified_issuer` trust. Public-dev HMAC seals are labeled `development`.
+Creation paths require a declared agent host (`SKILL_HOST`, IDE extension, or app wrapping core APIs). Denylisted hosts (`human`, `cli`, `shell`, `manual`, …) cannot mint. Declared host alone is **self_reported**, never `verified_issuer` trust. Public-dev HMAC seals are labeled `development`.
 
 ## Contract tooling
 

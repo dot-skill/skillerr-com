@@ -2,7 +2,7 @@
 
 ## What is "Skillerr"?
 
-"Skillerr" names the reference CLI package (`npm i -g skillerr`), not the project. The project is the **Open `.skill` Protocol** — an open specification and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Full breakdown of every name involved (protocol, format, npm scope, CLI, wire identifiers): [Naming](https://github.com/dot-skill/skillerr/wiki/Naming). Site: [skillerr.com](https://www.skillerr.com/docs/).
+"Skillerr" names the reference CLI package (`npm i -g skillerr`), not the project. The project is the **Open `.skill` Protocol**: an open specification and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Full breakdown of every name involved (protocol, format, npm scope, CLI, wire identifiers): [Naming](https://github.com/dot-skill/skillerr/wiki/Naming). Site: [skillerr.com](https://www.skillerr.com/docs/).
 
 ## What is the Open `.skill` Protocol?
 
@@ -10,11 +10,11 @@ An open specification for **portable AI skills**: a sealed `.skill` package with
 
 ## What is the `skillerr` package?
 
-[`skillerr`](https://www.npmjs.com/package/skillerr) is the **reference implementation** CLI (bin: `skill`) — one conforming surface for create, inspect, and run. The protocol is not limited to this package; hosts may integrate the `@skillerr/*` protocol libraries or ship an independent conforming port.
+[`skillerr`](https://www.npmjs.com/package/skillerr) is the **reference implementation** CLI (bin: `skill`), one conforming surface for create, inspect, and run. The protocol is not limited to this package; hosts may integrate the `@skillerr/*` protocol libraries or ship an independent conforming port.
 
 ## How do I use it?
 
-Install once, then **talk to your AI** — paste a prompt that points the agent at create, inspect, load, or handoff. You review and approve releases.
+Install once, then **talk to your AI**: paste a prompt that points the agent at create, inspect, load, or handoff. You review and approve releases.
 
 ```bash
 npm i -g skillerr
@@ -24,7 +24,7 @@ See [Getting started](/getting-started).
 
 ## Why would an app implement the protocol?
 
-So skills are interoperable: one package moves between tools with inspectable digests, TrustView before execute, continuity handoffs, and release completeness gates — instead of proprietary chat dumps or free-form markdown alone.
+So skills are interoperable: one package moves between tools with inspectable digests, TrustView before execute, continuity handoffs, and release completeness gates, instead of proprietary chat dumps or free-form markdown alone.
 
 ## How is this different from `SKILL.md`?
 
@@ -36,8 +36,8 @@ They solve different problems and work together. Installers like [vercel-labs/sk
 
 ## Continuity vs release?
 
-- **Continuity** — work handoff between agents or hosts (partial OK, not mintable).  
-- **Release** — complete reusable skill or `compile_refused`.
+- **Continuity**: work handoff between agents or hosts (partial OK, not mintable).  
+- **Release**: complete reusable skill or `compile_refused`.
 
 ## Who creates skills?
 
@@ -69,9 +69,9 @@ No. skillerr does not mint tokens, issue NFTs, or move value, and none of that i
 
 ## Is this ready to use?
 
-Yes, for real use today — digests, validation, inspect-before-run, and the runtime capability gate are all real, tested code. The protocol spec is versioned {{ $protocolVersion }} (Stable) — future changes go through the open RFC process, not silent revisions.
+Yes, for real use today: digests, validation, inspect-before-run, and the runtime capability gate are all real, tested code. The protocol spec is versioned {{ $protocolVersion }} (Stable). Future changes go through the open RFC process, not silent revisions.
 
-For production trust, configure a real Ed25519 issuer key (`skill keygen` + `--signer-key`) so mints earn `verified_issuer` trust — the bundled zero-setup key is for trying the CLI, not for shipping. A configured key alone isn't enough, though: `verified_issuer` also requires real agent-runtime evidence (a session id or runtime markers), or the mint fails loudly with a clear error rather than silently downgrading. See the OSS repo's [Key ceremony](https://github.com/dot-skill/skillerr/blob/main/docs/KEY-CEREMONY.md) for the full generate → mint → pin walkthrough, and [What is verifiable](https://github.com/dot-skill/skillerr/blob/main/docs/WHAT-IS-VERIFIABLE.md) for exactly what a signature proves either way.
+For production trust, configure a real Ed25519 issuer key (`skill keygen` + `--signer-key`) so mints earn `verified_issuer` trust. The bundled zero-setup key is for trying the CLI, not for shipping. A configured key alone isn't enough, though: `verified_issuer` also requires real agent-runtime evidence (a session id or runtime markers), or the mint fails loudly with a clear error rather than silently downgrading. See the OSS repo's [Key ceremony](https://github.com/dot-skill/skillerr/blob/main/docs/KEY-CEREMONY.md) for the full generate → mint → pin walkthrough, and [What is verifiable](https://github.com/dot-skill/skillerr/blob/main/docs/WHAT-IS-VERIFIABLE.md) for exactly what a signature proves either way.
 
 ## Do local / offline agents work?
 
@@ -85,8 +85,8 @@ Yes. Ask your agent to set `SKILL_HOST` / provider / model / deployment for Olla
 
 No. A seal proves which key signed which claims. Local LLMs can still misreport authorship. See [Trust and security](/trust-and-security).
 
-## Claude Desktop claims `.skill` on macOS — is that Skillerr?
+## Claude Desktop claims `.skill` on macOS: is that Skillerr?
 
-**No.** On macOS, Claude Desktop may register the `.skill` extension for its own **Agent Skills** format (a zip with `SKILL.md` inside). Skillerr `.skill` files are a **different** sealed package (typed contract, digests, mint, assets) — same extension, different format.
+**No.** On macOS, Claude Desktop may register the `.skill` extension for its own **Agent Skills** format (a zip with `SKILL.md` inside). Skillerr `.skill` files are a **different** sealed package (typed contract, digests, mint, assets), same extension, different format.
 
 **What to do:** Use the CLI (`skill inspect ./file.skill`) or your AI agent to identify the file. In Finder, use **Open With** → your editor or terminal instead of double-clicking if the wrong app opens. Do not assume every `.skill` file is Claude-native or Skillerr-native without inspecting.

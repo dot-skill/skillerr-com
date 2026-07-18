@@ -14,7 +14,7 @@ npm run fixtures:build && npm run fixtures:test
 
 | Fixture | Profile | Description |
 |---------|---------|-------------|
-| [knowledge-only.skill](/fixtures/knowledge-only.skill) | continuity | Legacy adapter source — knowledge sections |
+| [knowledge-only.skill](/fixtures/knowledge-only.skill) | continuity | Legacy adapter source, knowledge sections |
 | [parameterized-integration.skill](/fixtures/parameterized-integration.skill) | continuity | Typed inputs + integration workflow |
 | [code-changing.skill](/fixtures/code-changing.skill) | continuity | Code-change workflow fixture |
 | [contract-foundation.skill](/fixtures/contract-foundation.skill) | release | Full SkillContract release compile |
@@ -37,7 +37,7 @@ skill run ./contract-foundation.skill
 | `examples/contract-foundation/source.json` | SkillContract release |
 | `examples/multi-skill-extract/journey.json` | `skill extract` input |
 
-Multi-skill identify (journey only — not a `.skill` download):
+Multi-skill identify (journey only, not a `.skill` download):
 
 ```bash
 skill agent-guide
@@ -50,7 +50,7 @@ After build, see [fixtures/manifest.json](/fixtures/manifest.json) for `skill_id
 
 ## Honest trust note
 
-The three `continuity`-profile fixtures (`knowledge-only`, `parameterized-integration`, `code-changing`) are **never minted** — continuity drafts are mid-work handoffs, not release artifacts, and the protocol refuses to mint them by design.
+The three `continuity`-profile fixtures (`knowledge-only`, `parameterized-integration`, `code-changing`) are **never minted**: continuity drafts are mid-work handoffs, not release artifacts, and the protocol refuses to mint them by design.
 
 `contract-foundation.skill` is a `release`-profile package minted with a real, configured Ed25519 issuer key (`issuer_class: configured_ed25519`). It verifies as `trust_state: verified_issuer` against the published trust store:
 
@@ -58,4 +58,4 @@ The three `continuity`-profile fixtures (`knowledge-only`, `parameterized-integr
 skill verify-trust ./contract-foundation.skill --trust-store https://www.skillerr.com/docs/trust/trust-store.json
 ```
 
-The signing key (`skillerr-com-fixtures-2026`) is scoped to sign this one site fixture only — it is not a general-purpose issuer key. Its public half is published at [`/trust/trust-store.json`](/trust/trust-store.json). Always inspect TrustView before run regardless of trust state. Details: [Trust and security](/trust-and-security).
+The signing key (`skillerr-com-fixtures-2026`) is scoped to sign this one site fixture only; it is not a general-purpose issuer key. Its public half is published at [`/trust/trust-store.json`](/trust/trust-store.json). Always inspect TrustView before run regardless of trust state. Details: [Trust and security](/trust-and-security).

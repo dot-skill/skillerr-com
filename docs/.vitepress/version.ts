@@ -6,7 +6,7 @@
 // "Draft 0.5.0" long after the protocol and packages moved to 1.0+.
 //
 // packageVersion: the `skillerr` npm package version (reference CLI/libraries).
-// protocolVersion: PROTOCOL_VERSION — the protocol spec's own maturity version,
+// protocolVersion: PROTOCOL_VERSION, the protocol spec's own maturity version,
 //   a distinct axis from packageVersion (see docs/PROTOCOL.md's compatibility table).
 import { createRequire } from "node:module";
 import { PROTOCOL_VERSION } from "@skillerr/protocol";

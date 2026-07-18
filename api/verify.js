@@ -1,14 +1,14 @@
 /**
- * Public verify API — POST a base64-encoded .skill file, get back exactly
+ * Public verify API: POST a base64-encoded .skill file, get back exactly
  * what `skill inspect --trust` / `skill verify-trust` would report: no
  * more, no less. Uses the same @skillerr/core code the CLI does, not a
  * separate reimplementation.
  *
  * Privacy: the file is processed in memory for this one request and never
  * written to disk or logged. It's still a real upload to our server (not
- * verified fully client-side) — see docs/verify.md for why, and note that
+ * verified fully client-side), see docs/verify.md for why, and note that
  * .skill packages are already redacted-by-design (secrets as {{refs}},
- * scrubbed journeys — see docs/PRIVACY.md in the OSS repo) before they're
+ * scrubbed journeys, see docs/PRIVACY.md in the OSS repo) before they're
  * ever sealed, so this is a materially different exposure than uploading
  * raw source.
  */
@@ -18,7 +18,7 @@ import { createRequire } from "node:module";
 // static require() of a literal path (not a runtime-computed fs.readFileSync
 // path) specifically because Vercel's serverless bundler traces static
 // require()/import calls to decide which files to include in the deployed
-// function — a dynamically-built path is a well-documented way to get
+// function. A dynamically-built path is a well-documented way to get
 // ENOENT (or FUNCTION_INVOCATION_FAILED) in production despite working
 // fine locally, where every file is just... there.
 const require = createRequire(import.meta.url);
@@ -99,7 +99,7 @@ export default async function handler(req, res) {
       } else {
         const verified = await verifyRekorAnchor(tlogAnchor, trustView.sealed_manifest_digest, pinnedKey.public_key_pem);
         // Independently checkable on sigstore's own UI, not just our word
-        // for it — undefined (no fabricated link) unless the anchor both
+        // for it. Undefined (no fabricated link) unless the anchor both
         // verified and lives on the public rekor.sigstore.dev instance.
         transparency = verified.ok
           ? { ...verified, rekor_url: rekorSearchUrl(tlogAnchor, verified.log_index) }
@@ -109,7 +109,7 @@ export default async function handler(req, res) {
 
     // Same additive pattern as transparency_log above, but checked against
     // Fulcio's CA (part of the trusted root) instead of a trust-store-pinned
-    // key — see verifyKeylessAnchor / skill mint --keyless.
+    // key, see verifyKeylessAnchor / skill mint --keyless.
     let keyless;
     const keylessAnchor = anchors.find((a) => a.kind === "keyless_identity");
     if (keylessAnchor && trustView.sealed_manifest_digest) {
@@ -121,7 +121,7 @@ export default async function handler(req, res) {
 
     // Structural split, not just prose: nothing in this response can be
     // read as "verified" unless assessClaims put it there after an actual
-    // check — see docs/WHAT-IS-VERIFIABLE.md.
+    // check, see docs/WHAT-IS-VERIFIABLE.md.
     const claims = assessClaims(trustView, {
       transparency: transparency?.ok ? transparency : undefined,
       keyless: keyless?.ok ? keyless : undefined,

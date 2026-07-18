@@ -1,6 +1,6 @@
 # CLI reference
 
-Reference command surface for the Open `.skill` Protocol — for **agents and implementers**. Hosts may implement the same operations via the `@skillerr/*` libraries without this CLI. Humans typically install once and prompt an agent; they do not need this page as a click-ops tutorial.
+Reference command surface for the Open `.skill` Protocol: for **agents and implementers**. Hosts may implement the same operations via the `@skillerr/*` libraries without this CLI. Humans typically install once and prompt an agent; they do not need this page as a click-ops tutorial.
 
 ```bash
 npm i -g skillerr
@@ -14,10 +14,10 @@ Bin: `skill`. Site: [skillerr.com](https://www.skillerr.com/docs/).
 
 | Variable | Role |
 |----------|------|
-| `SKILL_HOST` | **Required to create** — agent host id (`cursor`, `ollama`, `claude`, …) |
+| `SKILL_HOST` | **Required to create**: agent host id (`cursor`, `ollama`, `claude`, …) |
 | `SKILL_PROVIDER` / `SKILL_MODEL` | Self-reported model provenance |
 | `SKILL_DEPLOYMENT` | `local` \| `hosted` \| `hybrid` \| `unknown` |
-| `SKILL_ENDPOINT` | Optional endpoint id — never credentials |
+| `SKILL_ENDPOINT` | Optional endpoint id, never credentials |
 | `SKILL_AGENT_INVOCATION` / `SKILL_SESSION_ID` | Agent runtime markers (preferred; still locally spoofable) |
 | `SKILL_INPUT_TOKENS` / `SKILL_OUTPUT_TOKENS` | Optional generation usage |
 | `SKILL_ACTOR` | Human review actor when recording approval |
@@ -43,7 +43,7 @@ skill contract-init
 skill contract-init --force   # overwrite an existing .skill/contract.json
 ```
 
-Scaffolds `.skill/contract.json` — a deliberately incomplete `SkillContract` for the agent to fill in field by field before release compile.
+Scaffolds `.skill/contract.json`: a deliberately incomplete `SkillContract` for the agent to fill in field by field before release compile.
 
 ### `skill journey`
 
@@ -102,7 +102,7 @@ skill mint --keyless [--fulcio-url <url>]
 
 Seal an already-compiled complete release. Host required. Continuity drafts cannot be minted.
 
-Default seal is the bundled development key (`development` trust only — never production). Pass `--signer-key` for a configured Ed25519 issuer seal (`skill keygen` generates one; see [Trust and security](/trust-and-security)) — `verified_issuer` trust additionally requires real agent-runtime evidence, not just a configured key.
+Default seal is the bundled development key (`development` trust only, never production). Pass `--signer-key` for a configured Ed25519 issuer seal (`skill keygen` generates one; see [Trust and security](/trust-and-security)). `verified_issuer` trust additionally requires real agent-runtime evidence, not just a configured key.
 
 `--transparency` and `--keyless` each add an independent, optional anchor on top of the seal above, never a replacement for it, and combinable with each other or with no signer at all:
 - `--transparency` logs the sealed digest to the public Rekor transparency log. It needs a signing key but **no login**: if none is configured, a per-user key is auto-provisioned on first use (same as `skill publish`).
@@ -166,7 +166,7 @@ skill ingest ./SKILL.md -o out.skill
 skill ingest ./skill-creator-folder -o out.skill --host cursor
 ```
 
-Imports a `SKILL.md` file or a skill-creator-style folder into a continuity `.skill`. Never fabricates release completeness — prints exactly what still needs authoring before it could compile as a release.
+Imports a `SKILL.md` file or a skill-creator-style folder into a continuity `.skill`. Never fabricates release completeness, prints exactly what still needs authoring before it could compile as a release.
 
 ### `skill inspect`
 
@@ -176,7 +176,7 @@ skill inspect ./file.skill --trust [--trust-store <path>]
 skill inspect ./file.skill --trust --claims
 ```
 
-Manifest, digests, seals, TrustView — **no execution**. `--claims` adds every claim split into two structurally separate lists — `verified` (checked by math) and `self_reported` (env/signer-asserted, never independently checked) — offline only, so any transparency/keyless anchor isn't re-verified here (see `skill verify-trust --claims` for that).
+Manifest, digests, seals, TrustView, **no execution**. `--claims` adds every claim split into two structurally separate lists: `verified` (checked by math) and `self_reported` (env/signer-asserted, never independently checked), offline only, so any transparency/keyless anchor isn't re-verified here (see `skill verify-trust --claims` for that).
 
 ### `skill validate`
 
@@ -197,7 +197,7 @@ skill verify-trust ./file.skill --online
 skill verify-trust ./file.skill --claims
 ```
 
-Public-dev HMAC is development-only; use `--allow-development-issuer` only when intentionally inspecting reference mints. `--trust-store` points at a specific pinned-key file (default `~/.skillerr/trust-store.json`). If the package has a transparency-log or keyless-identity anchor, this also verifies its inclusion proof / Fulcio certificate chain offline by default — `--online` additionally re-fetches the entry live from Rekor as an extra check. `--claims` adds the same verified/self-reported split as `skill inspect --trust --claims`, here including the anchor-verification results.
+Public-dev HMAC is development-only; use `--allow-development-issuer` only when intentionally inspecting reference mints. `--trust-store` points at a specific pinned-key file (default `~/.skillerr/trust-store.json`). If the package has a transparency-log or keyless-identity anchor, this also verifies its inclusion proof / Fulcio certificate chain offline by default. `--online` additionally re-fetches the entry live from Rekor as an extra check. `--claims` adds the same verified/self-reported split as `skill inspect --trust --claims`, here including the anchor-verification results.
 
 ### `skill run`
 
@@ -245,7 +245,7 @@ skill registry publish ./file.skill
 skill registry verify ./file.skill
 ```
 
-Local, append-only transparency log of package digests — explicitly not a hosted marketplace. Distinct from the public Rekor transparency log used by `skill mint --transparency` (see [Trust and security](/trust-and-security)).
+Local, append-only transparency log of package digests, explicitly not a hosted marketplace. Distinct from the public Rekor transparency log used by `skill mint --transparency` (see [Trust and security](/trust-and-security)).
 
 ---
 
