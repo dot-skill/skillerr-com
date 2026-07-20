@@ -2,7 +2,7 @@
 
 ## What is "Skillerr"?
 
-"Skillerr" names the reference CLI package (`npm i -g skillerr`), not the project. The project is the **Open `.skill` Protocol**: an open specification and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Full breakdown of every name involved (protocol, format, npm scope, CLI, wire identifiers): [Naming](https://github.com/dot-skill/skillerr/wiki/Naming). Site: [skillerr.com](https://www.skillerr.com/docs/).
+"Skillerr" names the reference CLI package (`npm i -g skillerr`), not the project. The project is the **Open `.skill` Protocol**: an open specification and portable **`.skill`** format so AI apps and agents can author, inspect, version, and run skills interoperably. Full breakdown of every name involved (protocol, format, npm scope, CLI, wire identifiers): [Naming](https://github.com/dot-skill/skillerr/wiki/Naming). Site: [skillerr.com](https://docs.skillerr.com/).
 
 ## What is the Open `.skill` Protocol?
 

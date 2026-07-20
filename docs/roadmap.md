@@ -2,7 +2,7 @@
 
 Status: protocol **{{ $protocolVersion }} (Stable)**; the `@skillerr/*` reference packages are at **{{ $packageVersion }}**. Future protocol changes go through the open RFC process, not silent revisions. The goal remains an open, interoperable contract: multiple conforming hosts and runtimes, not a single CLI.
 
-Public, contribution-oriented items only. Timing is not guaranteed. Site: [skillerr.com](https://www.skillerr.com/docs/).
+Public, contribution-oriented items only. Timing is not guaranteed. Site: [skillerr.com](https://docs.skillerr.com/).
 
 ## Available in the reference today
 

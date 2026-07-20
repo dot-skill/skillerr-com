@@ -82,7 +82,7 @@ export default async function handler(req, res) {
         ok: false,
         valid: false,
         issues: validation.issues,
-        docs: "https://www.skillerr.com/docs/what-is-verifiable",
+        docs: "https://docs.skillerr.com/what-is-verifiable",
       });
       return;
     }
@@ -144,7 +144,7 @@ export default async function handler(req, res) {
       ...(transparency ? { transparency } : {}),
       ...(keyless ? { keyless } : {}),
       claims,
-      docs: "https://www.skillerr.com/docs/what-is-verifiable",
+      docs: "https://docs.skillerr.com/what-is-verifiable",
     });
   } catch (e) {
     res.status(200).json({
