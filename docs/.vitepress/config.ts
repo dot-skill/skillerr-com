@@ -2,23 +2,20 @@ import { defineConfig } from "vitepress";
 import { withMermaid } from "vitepress-plugin-mermaid";
 import { packageVersion, protocolVersion } from "./version.js";
 
-// Three hosting contexts, three base paths:
+// Two hosting contexts, two base paths:
 // - GitHub Pages serves from a subpath (github.io/skillerr-com/): GITHUB_ACTIONS
 //   is set automatically in that one build environment.
-// - www.skillerr.com (Vercel, production) serves the docs under /docs/,
-//   deliberately: the bare root is reserved for a future product built on top
-//   of this protocol, not the docs site. See vercel.json for the root -> /docs/
-//   redirect that makes the bare domain still useful today.
-// - Local dev (`vitepress dev`/`build` with neither env var) defaults to root,
-//   which is simplest for previewing without the /docs/ prefix.
+// - Everything else (Vercel production at docs.skillerr.com, local dev)
+//   serves from root. Docs used to live under /docs/ on Vercel, with the
+//   bare skillerr.com root reserved for a future product; that product now
+//   has its own domain split (docs.skillerr.com), so docs serve at their
+//   own root too. Old /docs/* and skillerr.com/* links still resolve via
+//   vercel.json's redirects, they just aren't the canonical form anymore.
 //
 // A named const (not inlined into `base:` below) because the head array's
 // hardcoded icon hrefs need this same value: VitePress does NOT auto-prefix
 // head-array href/src with `base`, only asset URLs it resolves itself.
-// A bare "/assets/favicon.ico" 404s on production (real path is
-// "/docs/assets/favicon.ico"), which is exactly why Google's crawler was
-// never able to fetch the site's favicon for search results.
-const base = process.env.GITHUB_ACTIONS ? "/skillerr-com/" : process.env.VERCEL ? "/docs/" : "/";
+const base = process.env.GITHUB_ACTIONS ? "/skillerr-com/" : "/";
 
 export default withMermaid(
   defineConfig({
@@ -48,9 +45,9 @@ export default withMermaid(
       ],
       ["meta", { property: "og:site_name", content: "Open .skill Protocol" }],
       ["meta", { property: "og:type", content: "website" }],
-      ["meta", { property: "og:image", content: "https://www.skillerr.com/docs/assets/og-banner.png" }],
+      ["meta", { property: "og:image", content: "https://docs.skillerr.com/assets/og-banner.png" }],
       ["meta", { name: "twitter:card", content: "summary_large_image" }],
-      ["meta", { name: "twitter:image", content: "https://www.skillerr.com/docs/assets/og-banner.png" }],
+      ["meta", { name: "twitter:image", content: "https://docs.skillerr.com/assets/og-banner.png" }],
       // Site-wide page-view analytics (Google Analytics). This is the
       // skillerr.com docs/marketing site only, separate from the CLI,
       // which makes no network calls unless explicitly opted into
