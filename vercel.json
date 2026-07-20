@@ -1,12 +1,24 @@
 {
-  "buildCommand": "npm run build && rm -rf vercel-dist && mkdir -p vercel-dist/docs && cp -r docs/.vitepress/dist/. vercel-dist/docs/",
-  "outputDirectory": "vercel-dist",
+  "buildCommand": "npm run build",
+  "outputDirectory": "docs/.vitepress/dist",
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/",
-      "destination": "/docs/",
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "skillerr.com" }],
+      "destination": "https://docs.skillerr.com/:path*",
       "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.skillerr.com" }],
+      "destination": "https://docs.skillerr.com/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/docs/:path*",
+      "destination": "/:path*",
+      "permanent": true
     }
   ],
   "functions": {

@@ -14,7 +14,7 @@ npm i -g skillerr
 npx -y skillerr --help
 ```
 
-Bin: `skill`. Product hosts may wrap the `@skillerr/core` / `@skillerr/runtime` libraries instead of shelling out. Docs: [skillerr.com](https://www.skillerr.com/docs/).
+Bin: `skill`. Product hosts may wrap the `@skillerr/core` / `@skillerr/runtime` libraries instead of shelling out. Docs: [skillerr.com](https://docs.skillerr.com/).
 
 ## Mandatory rules
 

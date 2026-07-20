@@ -6,7 +6,7 @@ The Open `.skill` Protocol is **agent-first**. Install the reference CLI once, t
 npm i -g skillerr
 ```
 
-Node ≥ 20. Site: [skillerr.com](https://www.skillerr.com/docs/).
+Node ≥ 20. Site: [skillerr.com](https://docs.skillerr.com/).
 
 Implementers wiring a product: start from [Protocol](/protocol) and the `@skillerr/*` libraries, the CLI is the reference surface, not the only path.
 
