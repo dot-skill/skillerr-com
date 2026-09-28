@@ -39,3 +39,5 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](./CODE_OF_COND
 ## License
 
 [MIT](./LICENSE)
+
+The names and logos are trademarks: see [TRADEMARKS.md](TRADEMARKS.md).
